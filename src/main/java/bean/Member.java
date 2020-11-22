@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Member {
-    private int id;
+    private int mid;
     private String firstName;
     private String lastName;
     private Date birthday;
@@ -14,7 +14,7 @@ public class Member {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(mid);
     }
 
     @Override
@@ -26,13 +26,13 @@ public class Member {
             return false;
         }
         Member member = (Member) o;
-        return id == member.id;
+        return mid == member.mid;
     }
 
     @Override
     public String toString() {
         return "Member{" +
-                "id=" + id +
+                "id=" + mid +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthday=" + birthday +
@@ -42,12 +42,12 @@ public class Member {
                 '}';
     }
 
-    public int getId() {
-        return id;
+    public int getMid() {
+        return mid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMid(int mid) {
+        this.mid = mid;
     }
 
     public String getFirstName() {
