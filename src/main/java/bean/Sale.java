@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Sale {
-    private int saleId;
+    private int sid;
     private Date date;
     private String paymentMethod;
     private double totalPrice;
@@ -14,7 +14,7 @@ public class Sale {
 
     @Override
     public int hashCode() {
-        return Objects.hash(saleId);
+        return Objects.hash(sid);
     }
 
     @Override
@@ -26,13 +26,13 @@ public class Sale {
             return false;
         }
         Sale sale = (Sale) o;
-        return saleId == sale.saleId;
+        return sid == sale.sid;
     }
 
     @Override
     public String toString() {
         return "Sale{" +
-                "saleId=" + saleId +
+                "saleId=" + sid +
                 ", date=" + date +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", totalPrice=" + totalPrice +
@@ -41,12 +41,12 @@ public class Sale {
                 '}';
     }
 
-    public int getSaleId() {
-        return saleId;
+    public int getSid() {
+        return sid;
     }
 
-    public void setSaleId(int saleId) {
-        this.saleId = saleId;
+    public void setSid(int sid) {
+        this.sid = sid;
     }
 
     public Date getDate() {
