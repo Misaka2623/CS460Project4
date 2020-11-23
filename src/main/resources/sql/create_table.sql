@@ -63,3 +63,14 @@ create table "sale"
     "sub_sid"        int,
     foreign key ("mid") references "member" ("mid")
 );
+
+create table "sub_sale"
+(
+    "ssid"   int           not null primary key,
+    "pid"    int           not null,
+    "sid"    int           not null,
+    "price"  number(*, 2)  not null,
+    "amount" int default 1 not null,
+    foreign key ("pid") references "product" ("pid"),
+    foreign key ("sid") references "sale" ("sid")
+);

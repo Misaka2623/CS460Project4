@@ -1,7 +1,6 @@
 package bean;
 
 import java.sql.Date;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Sale {
@@ -10,7 +9,6 @@ public class Sale {
     private String paymentMethod;
     private double totalPrice;
     private int mid;
-    private int[] subSales;
 
     @Override
     public int hashCode() {
@@ -32,12 +30,11 @@ public class Sale {
     @Override
     public String toString() {
         return "Sale{" +
-                "saleId=" + sid +
+                "sid=" + sid +
                 ", date=" + date +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", totalPrice=" + totalPrice +
                 ", mid=" + mid +
-                ", subSales=" + Arrays.toString(subSales) +
                 '}';
     }
 
@@ -79,13 +76,5 @@ public class Sale {
 
     public void setMid(int mid) {
         this.mid = mid;
-    }
-
-    public int[] getSubSales() {
-        return subSales;
-    }
-
-    public void setSubSales(int[] subSales) {
-        this.subSales = subSales;
     }
 }
