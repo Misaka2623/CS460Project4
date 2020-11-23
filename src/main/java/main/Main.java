@@ -42,6 +42,13 @@ public class Main {
         return dataSource;
     }
 
+    /**
+     * if there is a json file {@value CONFIG_FILE} under the root folder, this method will read that file and get
+     * the username and password information. If there is any error occurred on reading, or the file does not exist,
+     * this method will ask the user to input the username and password, and write it into the json file.
+     *
+     * @return a json object that including the database username and password information.
+     */
     private JSONObject takeUsernameAndPassword() {
         File file = new File(CONFIG_FILE);
         if (file.exists()) {
