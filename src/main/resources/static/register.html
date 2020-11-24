@@ -10,27 +10,30 @@
 
 <button id="back">back</button>
 <form action="#" th:action="@{/register}" th:method="post" th:object="${member}">
-  <label>username: <input maxlength="25" minlength="6" name="username" pattern="^\w*$" required th:field="*{username}"
+  <label>username: <input maxlength="25" minlength="6" name="username" pattern="^\w*$" placeholder="username" required
+                          th:field="*{username}"
                           title="please enter 6-25 characters including alphabet, number, and underscore." type="text"></label>
   <br>
-  <label>password: <input id="password" maxlength="25" minlength="6" name="password" required th:field="*{password}"
-                          title="please enter 6-25 characters." type="password"></label>
+  <label>password: <input id="password" maxlength="25" minlength="6" name="password" placeholder="********" required
+                          th:field="*{password}" title="please enter 6-25 characters." type="password"></label>
   <br>
-  <label>confirm password: <input id="confirm" maxlength="25" minlength="6" required
+  <label>confirm password: <input id="confirm" maxlength="25" minlength="6" placeholder="********" required
                                   title="confirm password should be same as password." type="password"></label>
   <br>
-  <label>first name: <input maxlength="35" name="first-name" pattern="^[a-zA-Z]*$" required th:field="*{firstName}"
-                            title="please enter max to 35 alphabetic characters" type="text"></label>
+  <label>first name: <input maxlength="35" name="first-name" pattern="^[a-zA-Z]*$" placeholder="first name" required
+                            th:field="*{firstName}" title="please enter max to 35 alphabetic characters"
+                            type="text"></label>
   <br>
-  <label>last name: <input maxlength="35" name="last-name" pattern="^[a-zA-Z]*$" required th:field="*{lastName}"
-                           title="please enter max to 35 alphabetic characters" type="text"></label>
+  <label>last name: <input maxlength="35" name="last-name" pattern="^[a-zA-Z]*$" placeholder="last name" required
+                           th:field="*{lastName}" title="please enter max to 35 alphabetic characters"
+                           type="text"></label>
   <br>
   <label>birthday: <input th:field="*{birthday}" type="date"></label>
   <br>
-  <label>address: <input maxlength="255" name="address" th:field="*{address}" type="text"></label>
+  <label>address: <input maxlength="255" name="address" placeholder="address" th:field="*{address}" type="text"></label>
   <br>
-  <label>phone: <input id="phone" maxlength="15" minlength="9" pattern="^[0-9]*$" size="15" th:field="*{phone}"
-                       title="please enter 9-15 characters and only numbers." type="number"></label>
+  <label>phone: <input id="phone" maxlength="15" minlength="9" pattern="^[0-9]*$" placeholder="phone number" size="15"
+                       th:field="*{phone}" title="please enter 9-15 characters and only numbers." type="number"></label>
   <br>
   <input disabled id="submit" type="submit" value="sign in">
   <input type="reset" value="reset">
