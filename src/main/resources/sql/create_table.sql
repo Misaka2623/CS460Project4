@@ -4,6 +4,8 @@
 create table "member"
 (
     "mid"       int           not null primary key,
+    "username"  varchar(25)   not null unique,
+    "password"  varchar(25)   not null,
     "fist_name" varchar(35)   not null,
     "last_name" varchar(35)   not null,
     "birthday"  date,

@@ -4,22 +4,34 @@
 <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
       name="viewport">
 <meta content="ie=edge" http-equiv="X-UA-Compatible">
+<link href="register.css" rel="stylesheet">
 <script src="jquery-3.5.1.min.js"></script>
 <script src="register.js"></script>
 
 <button id="back">back</button>
 <form action="#" th:action="@{/register}" th:method="post" th:object="${member}">
-  <label>first name: <input maxlength="35" name="first-name" pattern="^[a-zA-Z]*$" th:field="*{firstName}" type="text"></label>
+  <label>username: <input maxlength="25" minlength="6" name="username" pattern="^\w*$" required th:field="*{username}"
+                          title="please enter 6-25 characters including alphabet, number, and underscore." type="text"></label>
   <br>
-  <label>last name: <input maxlength="35" name="last-name" pattern="^[a-zA-Z]*$" th:field="*{lastName}"
-                           type="text"></label>
+  <label>password: <input id="password" maxlength="25" minlength="6" name="password" required th:field="*{password}"
+                          title="please enter 6-25 characters." type="password"></label>
+  <br>
+  <label>confirm password: <input id="confirm" maxlength="25" minlength="6" required
+                                  title="confirm password should be same as password." type="password"></label>
+  <br>
+  <label>first name: <input maxlength="35" name="first-name" pattern="^[a-zA-Z]*$" required th:field="*{firstName}"
+                            title="please enter max to 35 alphabetic characters" type="text"></label>
+  <br>
+  <label>last name: <input maxlength="35" name="last-name" pattern="^[a-zA-Z]*$" required th:field="*{lastName}"
+                           title="please enter max to 35 alphabetic characters" type="text"></label>
   <br>
   <label>birthday: <input th:field="*{birthday}" type="date"></label>
   <br>
   <label>address: <input maxlength="255" name="address" th:field="*{address}" type="text"></label>
   <br>
-  <label>phone: <input maxlength="15" minlength="9" pattern="^[0-9]*$" size="15" th:field="*{phone}" type="tel"></label>
+  <label>phone: <input id="phone" maxlength="15" minlength="9" pattern="^[0-9]*$" size="15" th:field="*{phone}"
+                       title="please enter 9-15 characters and only numbers." type="number"></label>
   <br>
-  <input type="submit" value="sign in">
+  <input disabled id="submit" type="submit" value="sign in">
   <input type="reset" value="reset">
 </form>

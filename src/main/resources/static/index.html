@@ -11,9 +11,11 @@
 
 <!-- TODO: figure out how to make user login -->
 <form action="#">
-  <label>first name: <input maxlength="35" name="first-name" pattern="^[a-zA-Z]*$" type="text"></label>
+  <label>username: <input maxlength="25" minlength="6" name="username" pattern="^\w*$" required
+                          title="please enter an effective username." type="text"></label>
   <br>
-  <label>last name: <input maxlength="35" name="last-name" pattern="^[a-zA-Z]*$" type="text"></label>
+  <label>password: <input id="password" maxlength="25" minlength="6" name="password" required
+                          title="please enter an effective password." type="password"></label>
   <br>
   <input type="submit" value="login">
   <input type="reset" value="reset">
