@@ -4,15 +4,16 @@ import java.sql.Date;
 import java.util.Objects;
 
 public class Warehouse {
-    private int sid;
-    private int pid;
+    private int warehouseId;
+    private int supplierId;
+    private int productId;
     private Date incomingDate;
     private double purchasePrice;
     private int amount;
 
     @Override
     public int hashCode() {
-        return Objects.hash(sid);
+        return Objects.hash(supplierId);
     }
 
     @Override
@@ -24,34 +25,43 @@ public class Warehouse {
             return false;
         }
         Warehouse warehouse = (Warehouse) o;
-        return sid == warehouse.sid;
+        return supplierId == warehouse.supplierId;
     }
 
     @Override
     public String toString() {
         return "Warehouse{" +
-                "sid=" + sid +
-                ", pid=" + pid +
+                "warehouseId=" + warehouseId +
+                ", supplierId=" + supplierId +
+                ", productId=" + productId +
                 ", incomingDate=" + incomingDate +
                 ", purchasePrice=" + purchasePrice +
                 ", amount=" + amount +
                 '}';
     }
 
-    public int getSid() {
-        return sid;
+    public int getWarehouseId() {
+        return warehouseId;
     }
 
-    public void setSid(int sid) {
-        this.sid = sid;
+    public void setWarehouseId(int warehouseId) {
+        this.warehouseId = warehouseId;
     }
 
-    public int getPid() {
-        return pid;
+    public int getSupplierId() {
+        return supplierId;
     }
 
-    public void setPid(int pid) {
-        this.pid = pid;
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public Date getIncomingDate() {

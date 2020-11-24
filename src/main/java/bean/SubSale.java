@@ -3,15 +3,15 @@ package bean;
 import java.util.Objects;
 
 public class SubSale {
-    private int ssid;
-    private int pid;
-    private int sid;
+    private int subSaleId;
+    private int productId;
+    private int saleId;
     private double price;
     private int amount;
 
     @Override
     public int hashCode() {
-        return Objects.hash(ssid);
+        return Objects.hash(subSaleId);
     }
 
     @Override
@@ -23,42 +23,42 @@ public class SubSale {
             return false;
         }
         SubSale subSale = (SubSale) o;
-        return ssid == subSale.ssid;
+        return subSaleId == subSale.subSaleId;
     }
 
     @Override
     public String toString() {
         return "SubSale{" +
-                "ssid=" + ssid +
-                ", pid=" + pid +
-                ", sid=" + sid +
+                "ssid=" + subSaleId +
+                ", pid=" + productId +
+                ", sid=" + saleId +
                 ", price=" + price +
                 ", amount=" + amount +
                 '}';
     }
 
-    public int getSsid() {
-        return ssid;
+    public int getSubSaleId() {
+        return subSaleId;
     }
 
-    public void setSsid(int ssid) {
-        this.ssid = ssid;
+    public void setSubSaleId(int subSaleId) {
+        this.subSaleId = subSaleId;
     }
 
-    public int getPid() {
-        return pid;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setPid(int pid) {
-        this.pid = pid;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
-    public int getSid() {
-        return sid;
+    public int getSaleId() {
+        return saleId;
     }
 
-    public void setSid(int sid) {
-        this.sid = sid;
+    public void setSaleId(int saleId) {
+        this.saleId = saleId;
     }
 
     public double getPrice() {

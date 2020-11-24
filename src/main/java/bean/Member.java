@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 public class Member {
-    private int mid;
+    private int memberId;
     private String username;
     private String password;
     private String firstName;
@@ -16,7 +16,7 @@ public class Member {
 
     @Override
     public int hashCode() {
-        return Objects.hash(mid);
+        return Objects.hash(memberId);
     }
 
     @Override
@@ -28,13 +28,13 @@ public class Member {
             return false;
         }
         Member member = (Member) o;
-        return mid == member.mid;
+        return memberId == member.memberId;
     }
 
     @Override
     public String toString() {
         return "Member{" +
-                "mid=" + mid +
+                "mid=" + memberId +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
@@ -62,12 +62,12 @@ public class Member {
         this.password = password;
     }
 
-    public int getMid() {
-        return mid;
+    public int getMemberId() {
+        return memberId;
     }
 
-    public void setMid(int mid) {
-        this.mid = mid;
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
     }
 
     public String getFirstName() {

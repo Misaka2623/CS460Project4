@@ -3,7 +3,7 @@ package bean;
 import java.util.Objects;
 
 public class Product {
-    private int pid;
+    private int productId;
     private String name;
     private double retailPrice;
     private String category;
@@ -12,7 +12,7 @@ public class Product {
 
     @Override
     public int hashCode() {
-        return Objects.hash(pid);
+        return Objects.hash(productId);
     }
 
     @Override
@@ -24,13 +24,13 @@ public class Product {
             return false;
         }
         Product product = (Product) o;
-        return pid == product.pid;
+        return productId == product.productId;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "pid=" + pid +
+                "pid=" + productId +
                 ", name='" + name + '\'' +
                 ", retailPrice=" + retailPrice +
                 ", category='" + category + '\'' +
@@ -39,12 +39,12 @@ public class Product {
                 '}';
     }
 
-    public int getPid() {
-        return pid;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setPid(int pid) {
-        this.pid = pid;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public String getName() {

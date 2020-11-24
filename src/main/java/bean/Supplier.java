@@ -3,14 +3,14 @@ package bean;
 import java.util.Objects;
 
 public class Supplier {
-    private int sid;
+    private int supplierId;
     private String name;
     private String address;
     private String contactPerson;
 
     @Override
     public int hashCode() {
-        return Objects.hash(sid);
+        return Objects.hash(supplierId);
     }
 
     @Override
@@ -22,25 +22,25 @@ public class Supplier {
             return false;
         }
         Supplier supplier = (Supplier) o;
-        return sid == supplier.sid;
+        return supplierId == supplier.supplierId;
     }
 
     @Override
     public String toString() {
         return "Supplier{" +
-                "sid=" + sid +
+                "sid=" + supplierId +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", contactPerson='" + contactPerson + '\'' +
                 '}';
     }
 
-    public int getSid() {
-        return sid;
+    public int getSupplierId() {
+        return supplierId;
     }
 
-    public void setSid(int sid) {
-        this.sid = sid;
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
     }
 
     public String getName() {

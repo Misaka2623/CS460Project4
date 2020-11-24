@@ -1,78 +1,79 @@
 -- TODO: delete this file when release
 -- this sql is only a memo of the statements
 
-create table "member"
+CREATE TABLE "member"
 (
-    "mid"       int           not null primary key,
-    "username"  varchar(25)   not null unique,
-    "password"  varchar(25)   not null,
-    "fist_name" varchar(35)   not null,
-    "last_name" varchar(35)   not null,
+    "member_id" int           NOT NULL PRIMARY KEY,
+    "username"  varchar(25)   NOT NULL UNIQUE,
+    "password"  varchar(25)   NOT NULL,
+    "fist_name" varchar(35)   NOT NULL,
+    "last_name" varchar(35)   NOT NULL,
     "birthday"  date,
     "address"   varchar(255),
     "phone"     varchar(15),
-    "reward"    int default 0 not null
+    "reward"    int DEFAULT 0 NOT NULL
 );
 
-create table "employee"
+CREATE TABLE "employee"
 (
-    "eid"       int           not null primary key,
-    "fist_name" varchar(35)   not null,
-    "last_name" varchar(35)   not null,
-    "gender"    int default 0 not null check ("gender" in (0, 1, 2, 9)),
-    "address"   varchar(255),
-    "phone"     varchar(15),
-    "group"     varchar(20),
-    "salary"    number(*, 2)
+    "employee_id" int           NOT NULL PRIMARY KEY,
+    "fist_name"   varchar(35)   NOT NULL,
+    "last_name"   varchar(35)   NOT NULL,
+    "gender"      int DEFAULT 0 NOT NULL CHECK ("gender" IN (0, 1, 2, 9)),
+    "address"     varchar(255),
+    "phone"       varchar(15),
+    "group"       varchar(20),
+    "salary"      number(*, 2)
 );
 
-create table "product"
+CREATE TABLE "product"
 (
-    "pid"                 int                    not null primary key,
-    "name"                varchar(255)           not null,
+    "product_id"          int                    NOT NULL PRIMARY KEY,
+    "name"                varchar(255)           NOT NULL,
     "retail_price"        number(*, 2),
-    "category"            varchar(255)           not null,
-    "membership_discount" number(*, 2) default 0 not null,
-    "stock_info"          varchar(255)           not null
+    "category"            varchar(255)           NOT NULL,
+    "membership_discount" number(*, 2) DEFAULT 0 NOT NULL,
+    "stock_info"          varchar(255)           NOT NULL
 );
 
-create table "supplier"
+CREATE TABLE "supplier"
 (
-    "sid"            int          not null primary key,
-    "name"           varchar(255) not null,
+    "supplier_id"    int          NOT NULL PRIMARY KEY,
+    "name"           varchar(255) NOT NULL,
     "address"        varchar(255),
     "contact_person" varchar(70)
 );
 
-create table "warehouse"
+CREATE TABLE "warehouse"
 (
-    "sid"            int          not null,
-    "pid"            int          not null,
-    "incoming_date"  date         not null,
-    "purchase_price" number(*, 2) not null,
-    "amount"         number(*, 2) not null,
-    foreign key ("sid") references "supplier" ("sid"),
-    foreign key ("pid") references "product" ("pid")
+    "warehouse_id"   int          NOT NULL PRIMARY KEY,
+    "supplier_id"    int          NOT NULL,
+    "product_id"     int          NOT NULL,
+    "incoming_date"  date         NOT NULL,
+    "purchase_price" number(*, 2) NOT NULL,
+    "amount"         number(*, 2) NOT NULL,
+    FOREIGN KEY ("supplier_id") REFERENCES "supplier" ("supplier_id"),
+    FOREIGN KEY ("product_id") REFERENCES "product" ("product_id")
 );
 
-create table "sale"
+CREATE TABLE "sale"
 (
-    "sid"            int          not null primary key,
-    "date"           date         not null,
+    "sale_id"        int          NOT NULL PRIMARY KEY,
+    "date"           date         NOT NULL,
     "payment_method" varchar(255),
-    "total_price"    number(*, 2) not null,
-    "mid"            int,
-    "sub_sid"        int,
-    foreign key ("mid") references "member" ("mid")
+    "total_price"    number(*, 2) NOT NULL,
+    "member_id"      int,
+    "sub_sale_id"    int,
+    FOREIGN KEY ("member_id") REFERENCES "member" ("member_id")
 );
 
-create table "sub_sale"
+CREATE TABLE "sub_sale"
 (
-    "ssid"   int           not null primary key,
-    "pid"    int           not null,
-    "sid"    int           not null,
-    "price"  number(*, 2)  not null,
-    "amount" int default 1 not null,
-    foreign key ("pid") references "product" ("pid"),
-    foreign key ("sid") references "sale" ("sid")
+    "sub_sale_id" int           NOT NULL PRIMARY KEY,
+    "product_id"  int           NOT NULL,
+    "sale_id"     int           NOT NULL,
+    "price"       number(*, 2)  NOT NULL,
+    "amount"      int DEFAULT 1 NOT NULL,
+    FOREIGN KEY ("product_id") REFERENCES "product" ("product_id"),
+    FOREIGN KEY ("sale_id") REFERENCES "sale" ("sale_id")
 );

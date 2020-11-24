@@ -3,7 +3,7 @@ package bean;
 import java.util.Objects;
 
 public class Employee {
-    private int eid;
+    private int employeeId;
     private String firstName;
     private String lastName;
     /**
@@ -17,7 +17,7 @@ public class Employee {
 
     @Override
     public int hashCode() {
-        return Objects.hash(eid);
+        return Objects.hash(employeeId);
     }
 
     @Override
@@ -29,13 +29,13 @@ public class Employee {
             return false;
         }
         Employee employee = (Employee) o;
-        return eid == employee.eid;
+        return employeeId == employee.employeeId;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "eid=" + eid +
+                "eid=" + employeeId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", gender='" + gender + '\'' +
@@ -46,12 +46,12 @@ public class Employee {
                 '}';
     }
 
-    public int getEid() {
-        return eid;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEid(int eid) {
-        this.eid = eid;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getFirstName() {

@@ -4,15 +4,15 @@ import java.sql.Date;
 import java.util.Objects;
 
 public class Sale {
-    private int sid;
+    private int saleId;
     private Date date;
     private String paymentMethod;
     private double totalPrice;
-    private int mid;
+    private int memberId;
 
     @Override
     public int hashCode() {
-        return Objects.hash(sid);
+        return Objects.hash(saleId);
     }
 
     @Override
@@ -24,26 +24,26 @@ public class Sale {
             return false;
         }
         Sale sale = (Sale) o;
-        return sid == sale.sid;
+        return saleId == sale.saleId;
     }
 
     @Override
     public String toString() {
         return "Sale{" +
-                "sid=" + sid +
+                "sid=" + saleId +
                 ", date=" + date +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", totalPrice=" + totalPrice +
-                ", mid=" + mid +
+                ", mid=" + memberId +
                 '}';
     }
 
-    public int getSid() {
-        return sid;
+    public int getSaleId() {
+        return saleId;
     }
 
-    public void setSid(int sid) {
-        this.sid = sid;
+    public void setSaleId(int saleId) {
+        this.saleId = saleId;
     }
 
     public Date getDate() {
@@ -70,11 +70,11 @@ public class Sale {
         this.totalPrice = totalPrice;
     }
 
-    public int getMid() {
-        return mid;
+    public int getMemberId() {
+        return memberId;
     }
 
-    public void setMid(int mid) {
-        this.mid = mid;
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
     }
 }
