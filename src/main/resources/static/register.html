@@ -1,19 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
       name="viewport">
 <meta content="ie=edge" http-equiv="X-UA-Compatible">
-<link href="index.css" rel="stylesheet">
 <script src="jquery-3.5.1.min.js"></script>
-<script src="index.js"></script>
-<title>Shopping</title>
+<script src="register.js"></script>
 
-<form action="/login">
+<button id="back">back</button>
+<form action="/register">
   <label>first name: <input maxlength="35" name="first-name" pattern="^[a-zA-Z]*$" type="text"></label>
   <br>
   <label>last name: <input maxlength="35" name="last-name" pattern="^[a-zA-Z]*$" type="text"></label>
   <br>
-  <input type="submit" value="login">
+  <label>birthday: <input type="date"></label>
+  <br>
+  <label>address: <input maxlength="255" name="address" type="text"></label>
+  <br>
+  <label>phone: <input maxlength="15" minlength="9" pattern="^[0-9]*$" size="15" type="tel"></label>
+  <br>
+  <input type="submit" value="sign in">
   <input type="reset" value="reset">
 </form>
-<p>Don't have an account? <a href="register.html">sign in</a></p>

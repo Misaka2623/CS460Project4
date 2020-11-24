@@ -3,13 +3,13 @@
 
 create table "member"
 (
-    "mid"       int         not null primary key,
-    "fist_name" varchar(35) not null,
-    "last_name" varchar(35) not null,
+    "mid"       int           not null primary key,
+    "fist_name" varchar(35)   not null,
+    "last_name" varchar(35)   not null,
     "birthday"  date,
     "address"   varchar(255),
     "phone"     varchar(15),
-    "reward"    int
+    "reward"    int default 0 not null
 );
 
 create table "employee"
