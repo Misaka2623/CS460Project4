@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <meta charset="UTF-8">
 <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
       name="viewport">
@@ -7,16 +8,17 @@
 <script src="register.js"></script>
 
 <button id="back">back</button>
-<form action="/register">
-  <label>first name: <input maxlength="35" name="first-name" pattern="^[a-zA-Z]*$" type="text"></label>
+<form action="#" th:action="@{/register}" th:method="post" th:object="${member}">
+  <label>first name: <input maxlength="35" name="first-name" pattern="^[a-zA-Z]*$" th:field="*{firstName}" type="text"></label>
   <br>
-  <label>last name: <input maxlength="35" name="last-name" pattern="^[a-zA-Z]*$" type="text"></label>
+  <label>last name: <input maxlength="35" name="last-name" pattern="^[a-zA-Z]*$" th:field="*{lastName}"
+                           type="text"></label>
   <br>
-  <label>birthday: <input type="date"></label>
+  <label>birthday: <input th:field="*{birthday}" type="date"></label>
   <br>
-  <label>address: <input maxlength="255" name="address" type="text"></label>
+  <label>address: <input maxlength="255" name="address" th:field="*{address}" type="text"></label>
   <br>
-  <label>phone: <input maxlength="15" minlength="9" pattern="^[0-9]*$" size="15" type="tel"></label>
+  <label>phone: <input maxlength="15" minlength="9" pattern="^[0-9]*$" size="15" th:field="*{phone}" type="tel"></label>
   <br>
   <input type="submit" value="sign in">
   <input type="reset" value="reset">
