@@ -1,23 +1,12 @@
 <!doctype html>
 
 <meta charset="UTF-8">
-<meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-      name="viewport">
-<meta content="ie=edge" http-equiv="X-UA-Compatible">
-<link href="index.css" rel="stylesheet">
-<script src="jquery-3.5.1.min.js"></script>
-<script src="index.js"></script>
-<title>Shopping</title>
+<link href="styles.css" rel="stylesheet">
+<title>shopping</title>
 
-<!-- TODO: figure out how to make user login -->
-<form action="#">
-  <label>username: <input maxlength="25" minlength="6" name="username" pattern="^\w*$" placeholder="username" required
-                          title="please enter an effective username." type="text"></label>
-  <br>
-  <label>password: <input id="password" maxlength="25" minlength="6" name="password" placeholder="password" required
-                          title="please enter an effective password." type="password"></label>
-  <br>
-  <input type="submit" value="login">
-  <input type="reset" value="reset">
-</form>
-<p>Don't have an account? <a href="../templates/register.html">sign in</a></p>
+<form action="/login" name="login"></form>
+<form action="/register" name="register"></form>
+<p>If you already have an account, please
+  <a href="javascript:document.login.submit();" title="login">sign in</a></p>
+<p>If you don't have an account, please
+  <a href="javascript:document.register.submit();" title="register">sign up</a></p>

@@ -5,7 +5,7 @@ CREATE TABLE "member"
 (
     "member_id" int           NOT NULL PRIMARY KEY,
     "username"  varchar(25)   NOT NULL UNIQUE,
-    "password"  varchar(25)   NOT NULL,
+    "password"  varchar(32)   NOT NULL,
     "fist_name" varchar(35)   NOT NULL,
     "last_name" varchar(35)   NOT NULL,
     "birthday"  date,

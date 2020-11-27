@@ -3,14 +3,25 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <meta charset="UTF-8">
-<meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-      name="viewport">
-<meta content="ie=edge" http-equiv="X-UA-Compatible">
-<link href="../static/register.css" rel="stylesheet">
-<script src="../static/jquery-3.5.1.min.js"></script>
-<script src="../static/register.js"></script>
+<title>sign up</title>
+<link href="../static/styles.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("#password").blur(checkPassword);
+        $("#confirm").blur(checkPassword);
+    });
 
-<button id="back">back</button>
+    function checkPassword() {
+        if ($("#password").val() === $("#confirm").val()) {
+            $("#submit").attr("disabled", false);
+        } else {
+            $("#submit").attr("disabled", true);
+        }
+    }
+</script>
+
+<button id="back" onclick="window.location.href='../static/index.html'">back</button>
 <form action="#" th:action="@{/register}" th:method="post" th:object="${member}">
   <label>username: <input maxlength="25" minlength="6" name="username" pattern="^\w*$" placeholder="username" required
                           th:field="*{username}"

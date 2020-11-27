@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<title>sign in</title>
+<link href="../static/styles.css" rel="stylesheet">
+
+<button id="back" onclick="window.location.href='../static/index.html'">back</button>
+<form action="#" th:action="@{/login}" th:method="post" th:object="member">
+  <label>username: <input maxlength="25" minlength="6" name="username" pattern="^\w*$" placeholder="username" required
+                          th:field="*{username}" title="please enter an effective username." type="text"></label>
+  <br>
+  <label>password: <input id="password" maxlength="25" minlength="6" name="password" placeholder="password" required
+                          th:field="*{password}" title="please enter an effective password." type="password"></label>
+  <br>
+  <input type="submit" value="login">
+  <input type="reset" value="reset">
+</form>
