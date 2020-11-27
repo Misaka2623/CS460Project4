@@ -26,11 +26,11 @@
     <th>stock info
   <tbody>
   <tr th:each="product: ${products}">
-    <td th:text="${product.name}">
-    <td th:text="${product.retailPrice}">
-    <td th:text="${product.category}">
-    <td th:text="${product.membershipDiscount}">
-    <td th:text="${product.stockInfo}">
+    <td th:text="${product.getName()}">
+    <td th:text="${product.getRetailPrice()}">
+    <td th:text="${product.getCategory()}">
+    <td th:text="${product.getMembershipDiscount()}">
+    <td th:text="${product.getStockInfo()}">
     <td>
       <button class="buy" th:value="${product.productId}">buy</button>
 </table>
