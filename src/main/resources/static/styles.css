@@ -5,3 +5,7 @@ body {
 #phone::-webkit-outer-spin-button, #phone::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+
+#buy {
+  display: none;
+}
