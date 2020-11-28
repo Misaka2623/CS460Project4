@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<title>add employee</title>
+<link href="../static/styles.css" rel="stylesheet">
+
+<form action="#" th:action="@{/addEmployee}" th:method="post" th:object="employee">
+  <label>first name: <input maxlength="35" name="first-name" pattern="^[a-zA-Z]*$" placeholder="first name" required
+                            th:field="*{firstName}" title="please enter max to 35 alphabetic characters"
+                            type="text"></label>
+  <br>
+  <label>last name: <input maxlength="35" name="last-name" pattern="^[a-zA-Z]*$" placeholder="last name" required
+                           th:field="*{lastName}" title="please enter max to 35 alphabetic characters"
+                           type="text"></label>
+  <br>
+  <label>gender:</label>
+  <label><input checked th:field="*{gender}" type="radio" value="1">male</label>
+  <label><input th:field="*{gender}" type="radio" value="2">female</label>
+  <br>
+  <label>address: <input maxlength="255" name="address" placeholder="address" th:field="*{address}" type="text"></label>
+  <br>
+  <label>phone: <input id="phone" maxlength="15" minlength="9" pattern="^[0-9]*$" placeholder="phone number" size="15"
+                       th:field="*{phone}" title="please enter 9-15 characters and only numbers." type="number"></label>
+  <br>
+  <label>group: <input maxlength="20" placeholder="group" th:field="*{group}" type="text"></label>
+  <br>
+  <label>salary: <input placeholder="0.00" type="number"></label>
+  <br>
+  <input type="submit" value="submit">
+  <input type="reset" value="reset">
+</form>

@@ -60,7 +60,7 @@ public class AppController {
     @PostMapping("/buyProduct")
     public String buyProduct(Model model) {
         // TODO: 11/27/20
-        return "";
+        return "returnIndex";
     }
 
     @PostConstruct
