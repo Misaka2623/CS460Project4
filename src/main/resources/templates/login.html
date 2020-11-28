@@ -7,6 +7,12 @@
 <link href="../static/styles.css" rel="stylesheet">
 
 <button id="back" onclick="window.location.href='../static/index.html'">back</button>
+
+<!--
+send a post request to java to check whether the given username and password is matched. this form will send an Member
+object and fill the username and password fields. if match, jump to "products.html"; otherwise, jump to
+"returnIndex.html"
+-->
 <form action="#" th:action="@{/login}" th:method="post" th:object="member">
   <label>username: <input maxlength="25" minlength="6" name="username" pattern="^\w*$" placeholder="username" required
                           th:field="*{username}" title="please enter an effective username." type="text"></label>

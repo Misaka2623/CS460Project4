@@ -35,6 +35,7 @@
       <button class="buy" th:value="${product.productId}">buy</button>
 </table>
 
+<!-- send a post request to java to buy an item. this form will send a Product class and fill its productId field. -->
 <form action="#" id="buy" name="buy" th:action="@{/buyProduct}" th:method="post" th:object="product">
-  <label><input disabled id="buy_id" type="number"></label>
+  <label><input disabled id="buy_id" th:field="*{productId}" type="number"></label>
 </form>
