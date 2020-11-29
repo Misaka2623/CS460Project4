@@ -6,7 +6,10 @@
 <title>add employee</title>
 <link href="../static/styles.css" rel="stylesheet">
 
-<!-- send a post request to java to add an employee. this form will sent an object Employee and fill all its fields. -->
+<!--
+send a post request to java to add an employee. this form will sent an object Employee and fill all its fields. After
+submit, page should return to "manage.html"
+-->
 <form action="#" th:action="@{/addEmployee}" th:method="post" th:object="employee">
   <label>first name: <input maxlength="35" name="first-name" pattern="^[a-zA-Z]*$" placeholder="first name" required
                             th:field="*{firstName}" title="please enter max to 35 alphabetic characters"
