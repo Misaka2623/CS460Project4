@@ -7,8 +7,8 @@
 <link href="../static/styles.css" rel="stylesheet">
 
 <!--
-send a post request to java to add an employee. this form will sent an object Employee and fill all its fields. After
-submit, page should return to "manage.html"
+send a post request to java to add an employee. this form will sent an object Employee and fill all its fields except
+id. After submit, page should return to "manage.html"
 -->
 <form action="#" th:action="@{/addEmployee}" th:method="post" th:object="employee">
   <label>first name: <input maxlength="35" name="first-name" pattern="^[a-zA-Z]*$" placeholder="first name" required

@@ -24,8 +24,8 @@
 <button id="back" onclick="window.location.href='../static/index.html'">back</button>
 
 <!--
-send a post request to java to add a member. this form will send a Member object and fill all its fields except reward
-field. If the username is already exists, return to "returnIndex.html" page; otherwise, jump to "products.html"
+send a post request to java to add a member. this form will send a Member object and fill all its fields except id and
+reward field. If the username is already exists, return to "returnIndex.html" page; otherwise, jump to "products.html"
 -->
 <!-- TODO: consider return to this page and send the user a hint if the inputted username is already exist -->
 <form action="#" th:action="@{/register}" th:method="post" th:object="${member}">
