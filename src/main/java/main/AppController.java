@@ -1,7 +1,6 @@
 package main;
 
 import bean.Member;
-import bean.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,6 +15,7 @@ import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.util.List;
 
+@SuppressWarnings("SqlResolve")
 @Controller
 public class AppController {
     @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
@@ -43,16 +43,16 @@ public class AppController {
 
     @PostMapping("/register")
     public String addMember(@ModelAttribute Member member) {
-        jdbcTemplate.update("INSERT INTO \"member\" VALUES (?,?,?,?,?,?,?,?,?)", member.getMemberId(),
-                member.getUsername(), Encryption.encrypt(member.getPassword()), member.getFirstName(), member.getLastName(),
-                member.getBirthday(), member.getAddress(), member.getPhone(), 0);
+        // jdbcTemplate.update("INSERT INTO \"member\" VALUES (?,?,?,?,?,?,?,?,?)", member.getMemberId(),
+        //         member.getUsername(), Encryption.encrypt(member.getPassword()), member.getFirstName(), member.getLastName(),
+        //         member.getBirthday(), member.getAddress(), member.getPhone(), 0);
         return "products";
     }
 
     @GetMapping("/products")
     public String showProducts(Model model) {
-        List<Product> products = jdbcTemplate.query("SELECT * FROM \"product\"", new BeanPropertyRowMapper<>(Product.class));
-        model.addAttribute("products", products);
+        // List<Product> products = jdbcTemplate.query("SELECT * FROM \"product\"", new BeanPropertyRowMapper<>(Product.class));
+        // model.addAttribute("products", products);
         return "products";
     }
 
