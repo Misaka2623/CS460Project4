@@ -19,7 +19,7 @@ CREATE TABLE "person"
     "last_name"  varchar(35)   NOT NULL,
     "gender"     int DEFAULT 0 NOT NULL CHECK ( "gender" IN (0, 1, 2, 9) ),
     "birthday"   date,
-    "address_id" number(10),
+    "address_id" number(10)    NOT NULL,
     "phone"      varchar(15),
     FOREIGN KEY ("address_id") REFERENCES "address" ("address_id")
 );
@@ -63,7 +63,6 @@ CREATE TABLE "product"
     "retail_price"        number(*, 2)            NOT NULL,
     "category_id"         number(10)              NOT NULL,
     "membership_discount" number(*, 2) DEFAULT .0 NOT NULL,
-    "stock_info"          int                     NOT NULL,
     FOREIGN KEY ("category_id") REFERENCES "category" ("category_id")
 );
 
@@ -72,7 +71,7 @@ CREATE TABLE "supplier"
     "supplier_id"    number(10)   NOT NULL PRIMARY KEY,
     "name"           varchar(255) NOT NULL,
     "address_id"     number(10)   NOT NULL,
-    "contact_person" int          NOT NULL,
+    "contact_person" number(10)   NOT NULL,
     FOREIGN KEY ("address_id") REFERENCES "address" ("address_id"),
     FOREIGN KEY ("contact_person") REFERENCES "person" ("person_id")
 );

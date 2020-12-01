@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<title>sign up</title>
+<link href="../static/styles.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("#password").blur(checkPassword);
+        $("#confirm").blur(checkPassword);
+    });
+
+    function checkPassword() {
+        if ($("#password").val() === $("#confirm").val()) {
+            $("#submit").attr("disabled", false);
+        } else {
+            $("#submit").attr("disabled", true);
+        }
+    }
+</script>
+
+<form action="#" th:action="@{/addMember}" th:method="post" th:object="member2">
+  <label>username:
+    <input maxlength="25" minlength="6" name="username" pattern="^\w*$" required th:field="*{username}" type="text">
+  </label>
+  <br>
+  <label>password:
+    <input id="password" maxlength="25" minlength="6" name="password" required th:field="*{password}" type="password">
+  </label>
+  <br>
+  <label>confirm password:
+    <input id="confirm" maxlength="25" minlength="6" required type="password">
+  </label>
+  <br>
+  <label>first name:
+    <input maxlength="35" pattern="^[a-zA-Z]*$" required th:field="*{firstName}" type="text">
+  </label>
+  <br>
+  <label>last name:
+    <input maxlength="35" pattern="^[a-zA-Z]*$" required th:field="*{lastName}" type="text">
+  </label>
+  <br>
+  gender:
+  <label><input checked name="gender" th:field="*{gender}" type="radio" value="0">secret</label>
+  <label><input name="gender" th:field="*{gender}" type="radio" value="1">male</label>
+  <label><input name="gender" th:field="*{gender}" type="radio" value="2">female</label>
+  <label><input name="gender" th:field="*{gender}" type="radio" value="9">not applicable</label>
+  <br>
+  <label>birthday:
+    <input th:field="*{birthday}" type="date">
+  </label>
+  <br>
+  address:
+  <br>
+  <label>line 1:<input maxlength="120" required th:field="*{line1}" type="text"></label>
+  <br>
+  <label>line 2:<input maxlength="120" th:field="*{line2}" type="text"></label>
+  <br>
+  <label>line 3:<input maxlength="120" th:field="*{line3}" type="text"></label>
+  <br>
+  <label>city:<input maxlength="100" required th:field="*{city}" type="text"></label>
+  <br>
+  <label>state:
+    <select th:field="*{state}">
+      <option value="AL">Alabama</option>
+      <option value="AK">Alaska</option>
+      <option value="AZ">Arizona</option>
+      <option value="AR">Arkansas</option>
+      <option value="CA">California</option>
+      <option value="CO">Colorado</option>
+      <option value="CT">Connecticut</option>
+      <option value="DE">Delaware</option>
+      <option value="DC">District Of Columbia</option>
+      <option value="FL">Florida</option>
+      <option value="GA">Georgia</option>
+      <option value="HI">Hawaii</option>
+      <option value="ID">Idaho</option>
+      <option value="IL">Illinois</option>
+      <option value="IN">Indiana</option>
+      <option value="IA">Iowa</option>
+      <option value="KS">Kansas</option>
+      <option value="KY">Kentucky</option>
+      <option value="LA">Louisiana</option>
+      <option value="ME">Maine</option>
+      <option value="MD">Maryland</option>
+      <option value="MA">Massachusetts</option>
+      <option value="MI">Michigan</option>
+      <option value="MN">Minnesota</option>
+      <option value="MS">Mississippi</option>
+      <option value="MO">Missouri</option>
+      <option value="MT">Montana</option>
+      <option value="NE">Nebraska</option>
+      <option value="NV">Nevada</option>
+      <option value="NH">New Hampshire</option>
+      <option value="NJ">New Jersey</option>
+      <option value="NM">New Mexico</option>
+      <option value="NY">New York</option>
+      <option value="NC">North Carolina</option>
+      <option value="ND">North Dakota</option>
+      <option value="OH">Ohio</option>
+      <option value="OK">Oklahoma</option>
+      <option value="OR">Oregon</option>
+      <option value="PA">Pennsylvania</option>
+      <option value="RI">Rhode Island</option>
+      <option value="SC">South Carolina</option>
+      <option value="SD">South Dakota</option>
+      <option value="TN">Tennessee</option>
+      <option value="TX">Texas</option>
+      <option value="UT">Utah</option>
+      <option value="VT">Vermont</option>
+      <option value="VA">Virginia</option>
+      <option value="WA">Washington</option>
+      <option value="WV">West Virginia</option>
+      <option value="WI">Wisconsin</option>
+      <option value="WY">Wyoming</option>
+    </select>
+  </label>
+  <br>
+  <label>postal code:
+    <input class="number" th:field="*{postalCode}" type="number">
+  </label>
+  <br>
+  <label>phone:
+    <input class="number" id="phone" maxlength="15" minlength="9" pattern="^[0-9]*$" size="15" th:field="*{phone}"
+           type="number">
+  </label>
+  <br>
+  <input disabled id="submit" type="submit" value="sign in">
+  <input type="reset" value="reset">
+</form>
