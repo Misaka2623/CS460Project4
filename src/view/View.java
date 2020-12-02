@@ -6,4 +6,6 @@ public interface View {
     int showIdentityView();
 
     void newPage();
+
+    void exit();
 }

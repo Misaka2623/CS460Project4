@@ -28,6 +28,11 @@ public class TextView implements View {
         System.out.println("========================================");
     }
 
+    @Override
+    public void exit() {
+        System.out.println("Thank you for using CS460 shopping app. Have a good day!");
+    }
+
     private int requireOption(String quit, String... options) {
         String instruction = IntStream.range(0, options.length)
                 .mapToObj(i -> String.format("%d\t%s\n", i + 1, options[i]))
