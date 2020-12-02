@@ -29,6 +29,11 @@ public class TextView implements View {
     }
 
     @Override
+    public void showSignInSuccessView() {
+        System.out.println("Congratulation! You successfully signed in!");
+    }
+
+    @Override
     public String requireUsername() {
         return requireString("Please enter your username");
     }
