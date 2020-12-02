@@ -19,14 +19,20 @@ public class TextView implements View {
 
     @Override
     public int showIdentityView() {
+        System.out.println("Select your identity");
         return requireOption("quit app", "user", "manager");
+    }
+
+    @Override
+    public void newPage() {
+        System.out.println("========================================");
     }
 
     private int requireOption(String quit, String... options) {
         String instruction = IntStream.range(0, options.length)
                 .mapToObj(i -> String.format("%d\t%s\n", i + 1, options[i]))
                 .collect(Collectors.joining("", "", String.format("0\t%s\nPlease select an action", quit)));
-        String errorMessage = String.format("Error: please enter an integer in range of 0 to %d", options.length);
+        String errorMessage = String.format("Error: please enter an integer in range from 0 to %d", options.length);
         return requireInteger(instruction, errorMessage, 0, options.length);
     }
 
