@@ -1,10 +1,14 @@
 package main;
 
+import dao.MemberDao;
+import dao.MemberDaoImpl;
+import util.Encryption;
 import view.TextView;
 import view.View;
 
 public class Main {
     private static final View view = new TextView();
+    private static final MemberDao memberDao = new MemberDaoImpl();
 
     public static void main(String[] args) {
         start();
@@ -49,6 +53,18 @@ public class Main {
                 break;
             default:
                 throw new IllegalStateException();
+        }
+    }
+
+    private static void signIn() {
+        view.newPage();
+        String username = view.requireUsername();
+        String password = view.requirePassword();
+        boolean valid = memberDao.checkUsernameAndPassword(username, Encryption.encrypt(password));
+        if (valid) {
+            // TODO: 12/1/20
+        } else {
+            // TODO: 12/1/20
         }
     }
 }
