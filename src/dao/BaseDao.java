@@ -21,7 +21,7 @@ public abstract class BaseDao {
     }
 
     public ResultSet executeSql(String preparedSql, Object... args) {
-        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+        try (Connection connection = getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(preparedSql)) {
                 for (int i = 1; i <= args.length; i++) {
                     statement.setObject(i, args[i]);
@@ -32,5 +32,23 @@ public abstract class BaseDao {
             exception.printStackTrace();
         }
         return null;
+    }
+
+    protected long generateId() {
+        String tableName = getTableName();
+        try (ResultSet resultSet = executeSql("SELECT max(\"?\") FROM \"?\"", tableName + "_id", tableName)) {
+            if (resultSet.next()) {
+                return resultSet.getLong(1);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return 1;
+    }
+
+    protected abstract String getTableName();
+
+    protected Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 }
