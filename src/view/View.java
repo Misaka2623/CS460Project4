@@ -5,6 +5,12 @@ public interface View {
 
     int showIdentityView();
 
+    int showSignView();
+
+    String requireUsername();
+
+    String requirePassword();
+
     void newPage();
 
     void exit();

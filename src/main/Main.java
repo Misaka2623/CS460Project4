@@ -25,9 +25,28 @@ public class Main {
                 view.exit();
                 return;
             case 1:
-                // TODO: 12/1/20
+                signInOrUp();
+                break;
             case 2:
                 // TODO: 12/1/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+    }
+
+    private static void signInOrUp() {
+        view.newPage();
+        int option = view.showSignView();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // TODO: 12/1/20
+                break;
+            case 2:
+                // TODO: 12/1/20
+                break;
             default:
                 throw new IllegalStateException();
         }

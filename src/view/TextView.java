@@ -24,6 +24,21 @@ public class TextView implements View {
     }
 
     @Override
+    public int showSignView() {
+        return requireOption("back", "sign in", "sign up");
+    }
+
+    @Override
+    public String requireUsername() {
+        return requireString("Please enter your username");
+    }
+
+    @Override
+    public String requirePassword() {
+        return requireString("Please enter your password");
+    }
+
+    @Override
     public void newPage() {
         System.out.println("========================================");
     }
