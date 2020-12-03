@@ -12,6 +12,10 @@ public class Product {
     public Product() {
     }
 
+    public Product(long productId) {
+        this.productId = productId;
+    }
+
     public Product(long productId, String name, double retailPrice, long categoryId, double membershipDiscount) {
         this.productId = productId;
         this.name = name;
