@@ -70,7 +70,7 @@ public abstract class BaseDao {
         String tableName = getTableName();
         try (ResultSet resultSet = executeSql("SELECT max(\"?\") FROM \"?\"", tableName + "_id", tableName)) {
             if (resultSet.next()) {
-                return resultSet.getLong(1);
+                return resultSet.getLong(1) + 1;
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
