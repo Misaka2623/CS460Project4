@@ -14,16 +14,18 @@ import dao.ProductDao;
 import dao.ProductDaoImpl;
 import dao.SaleDao;
 import dao.SaleDaoImpl;
+import dao.SubSaleDao;
+import dao.SubSaleDaoImpl;
+import dao.WarehouseDao;
+import dao.WarehouseDaoImpl;
+import util.Calculator;
 import util.Encryption;
-import util.Gender;
 import view.TextView;
 import view.View;
 
-import java.sql.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
     private static final View view = new TextView();
@@ -32,6 +34,8 @@ public class Main {
     private static final PersonDao personDao = new PersonDaoImpl();
     private static final ProductDao productDao = new ProductDaoImpl();
     private static final SaleDao saleDao = new SaleDaoImpl();
+    private static final SubSaleDao subSaleDao = new SubSaleDaoImpl();
+    private static final WarehouseDao warehouseDao = new WarehouseDaoImpl();
     private static long userId;
 
     public static void main(String[] args) {
@@ -53,14 +57,17 @@ public class Main {
                 view.exit();
                 return;
             case 1:
+                // user
                 signInOrUp();
                 break;
             case 2:
+                // manager
                 // TODO: 12/1/20
                 break;
             default:
                 throw new IllegalStateException();
         }
+        recognizeIdentity();
     }
 
     private static void signInOrUp() {
@@ -70,14 +77,17 @@ public class Main {
             case 0:
                 return;
             case 1:
+                // sign in
                 signIn();
                 break;
             case 2:
+                // sign up
                 signUp();
                 break;
             default:
                 throw new IllegalStateException();
         }
+        signInOrUp();
     }
 
     private static void signIn() {
@@ -88,7 +98,7 @@ public class Main {
         if (valid) {
             view.showSignInSuccessView();
             userId = memberDao.getMemberIdByUsername(username);
-            shopping(username);
+            userMain(username);
         } else {
             view.showSignInFailView();
             signInOrUp();
@@ -109,6 +119,8 @@ public class Main {
             return;
         }
         member.setPassword(Encryption.encrypt(view.requirePassword()));
+        member.setReward(0);
+        member.setSuperMember(0);
         person.setFirstName(view.requireFirstName());
         person.setLastName(view.requireLastName());
         person.setGender(view.requireGender());
@@ -131,17 +143,45 @@ public class Main {
 
         view.showSignUpSuccessView();
 
-        shopping(member.getUsername());
+        userMain(member.getUsername());
     }
 
-    private static void shopping(String username) {
+    private static void userMain(String username) {
         view.newPage();
         view.showGreet(username);
+        int option = view.showUserActionView();
+        switch (option) {
+            case 0:
+                // log out
+                return;
+            case 1:
+                // shopping
+                shopping();
+                break;
+            case 2:
+                // become super member
+                // TODO: 12/4/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        userMain(username);
+    }
+
+    private static void shopping() {
+        view.newPage();
+
         Map<Product, Integer> products = productDao.getAllProducts();
         Map<Long, Integer> cart = new HashMap<>();
         addProduct(products, cart);
+
         String paymentMethod = view.requirePaymentMethod();
-        long price = saleDao.insert(userId, paymentMethod, cart);
+        saleDao.insert(userId, paymentMethod, cart);
+
+        Map<Product, Integer> shoppingList =
+                cart.keySet().stream().collect(Collectors.toMap(productDao::get, cart::get, (k, v) -> v));
+        double totalPrice = Calculator.calculateTotalPrice(shoppingList, memberDao.isSuperMember(userId));
+        view.showShoppingResult(totalPrice, shoppingList);
     }
 
     private static void addProduct(Map<Product, Integer> products, Map<Long, Integer> cart) {
