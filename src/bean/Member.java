@@ -8,6 +8,7 @@ public class Member {
     private String password;
     private long personId;
     private int reward;
+    private int superMember;
 
     public Member() {
     }
@@ -45,6 +46,7 @@ public class Member {
                 ", password='" + password + '\'' +
                 ", personId=" + personId +
                 ", reward=" + reward +
+                ", superMember=" + superMember +
                 '}';
     }
 
@@ -86,5 +88,13 @@ public class Member {
 
     public void setReward(int reward) {
         this.reward = reward;
+    }
+
+    public int getSuperMember() {
+        return superMember;
+    }
+
+    public void setSuperMember(int superMember) {
+        this.superMember = superMember;
     }
 }

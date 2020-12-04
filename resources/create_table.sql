@@ -36,11 +36,12 @@ GRANT SELECT ON "person" TO PUBLIC;
 DROP TABLE "member" PURGE;
 CREATE TABLE "member"
 (
-    "member_id" number(10)    NOT NULL PRIMARY KEY,
-    "username"  varchar(25)   NOT NULL UNIQUE,
-    "password"  varchar(32)   NOT NULL,
-    "person_id" number(10)    NOT NULL,
-    "reward"    int DEFAULT 0 NOT NULL,
+    "member_id"   number(10)          NOT NULL PRIMARY KEY,
+    "username"    varchar(25)         NOT NULL UNIQUE,
+    "password"    varchar(32)         NOT NULL,
+    "person_id"   number(10)          NOT NULL,
+    "reward"      int       DEFAULT 0 NOT NULL,
+    "super_ember" number(1) DEFAULT 0 NOT NULL CHECK ( "super_ember" IN (0, 1) ),
     FOREIGN KEY ("person_id") REFERENCES "person" ("person_id")
 );
 
