@@ -1,9 +1,11 @@
 package view;
 
+import bean.Product;
 import util.Gender;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface View {
     void greet();
@@ -19,6 +21,12 @@ public interface View {
     void showSignUpSuccessView();
 
     void showDuplicateUsernameView();
+
+    void showGreet(String username);
+
+    void showProductList(Map<Product, Integer> products);
+
+    int showShoppingAction();
 
     List<Long> showShoppingPage();
 
@@ -51,4 +59,12 @@ public interface View {
     void newPage();
 
     void exit();
+
+    long requireProductId();
+
+    int requireProductAmount();
+
+    void showAddToCartFailView(long productId, int stock);
+
+    String requirePaymentMethod();
 }

@@ -3,25 +3,36 @@ package main;
 import bean.Address;
 import bean.Member;
 import bean.Person;
+import bean.Product;
 import dao.AddressDao;
 import dao.AddressDaoImpl;
 import dao.MemberDao;
 import dao.MemberDaoImpl;
 import dao.PersonDao;
 import dao.PersonDaoImpl;
+import dao.ProductDao;
+import dao.ProductDaoImpl;
+import dao.SaleDao;
+import dao.SaleDaoImpl;
 import util.Encryption;
 import util.Gender;
 import view.TextView;
 import view.View;
 
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     private static final View view = new TextView();
     private static final AddressDao addressDao = new AddressDaoImpl();
     private static final MemberDao memberDao = new MemberDaoImpl();
     private static final PersonDao personDao = new PersonDaoImpl();
+    private static final ProductDao productDao = new ProductDaoImpl();
+    private static final SaleDao saleDao = new SaleDaoImpl();
+    private static long userId;
 
     public static void main(String[] args) {
         start();
@@ -76,7 +87,8 @@ public class Main {
         boolean valid = memberDao.checkUsernameAndPassword(username, Encryption.encrypt(password));
         if (valid) {
             view.showSignInSuccessView();
-            shopping();
+            userId = memberDao.getMemberIdByUsername(username);
+            shopping(username);
         } else {
             view.showSignInFailView();
             signInOrUp();
@@ -85,7 +97,11 @@ public class Main {
 
     private static void signUp() {
         view.newPage();
+
         Member member = new Member();
+        Person person = new Person();
+        Address address = new Address();
+
         member.setUsername(view.requireUsername());
         if (memberDao.containsUsername(member.getUsername())) {
             view.showDuplicateUsernameView();
@@ -93,13 +109,11 @@ public class Main {
             return;
         }
         member.setPassword(Encryption.encrypt(view.requirePassword()));
-        Person person = new Person();
         person.setFirstName(view.requireFirstName());
         person.setLastName(view.requireLastName());
         person.setGender(view.requireGender());
         person.setBirthday(view.requireBirthday());
         person.setPhone(view.requirePhoneNumber());
-        Address address = new Address();
         address.setLine1(view.requireLine1());
         address.setLine2(view.requireLine2());
         address.setLine3(view.requireLine3());
@@ -109,17 +123,45 @@ public class Main {
 
         long addressId = addressDao.insert(address);
         person.setAddressId(addressId);
+
         long personId = personDao.insert(person);
         member.setPersonId(personId);
-        memberDao.insert(member);
+
+        userId = memberDao.insert(member);
 
         view.showSignUpSuccessView();
-        shopping();
+
+        shopping(member.getUsername());
     }
 
-    private static void shopping() {
+    private static void shopping(String username) {
         view.newPage();
-        List<Long> shoppingCart = view.showShoppingPage();
-        // TODO: 12/1/20
+        view.showGreet(username);
+        Map<Product, Integer> products = productDao.getAllProducts();
+        Map<Long, Integer> cart = new HashMap<>();
+        addProduct(products, cart);
+        String paymentMethod = view.requirePaymentMethod();
+        long price = saleDao.insert(userId, paymentMethod, cart);
+    }
+
+    private static void addProduct(Map<Product, Integer> products, Map<Long, Integer> cart) {
+        int option = view.showShoppingAction();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                view.showProductList(products);
+                break;
+            case 2:
+                long productId = view.requireProductId();
+                int amount = view.requireProductAmount();
+                int stock = products.get(new Product(productId));
+                if (stock < amount) {
+                    view.showAddToCartFailView(productId, stock);
+                } else {
+                    cart.put(productId, cart.getOrDefault(productId, 0) + amount);
+                }
+        }
+        addProduct(products, cart);
     }
 }
