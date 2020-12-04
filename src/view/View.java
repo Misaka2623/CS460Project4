@@ -71,4 +71,6 @@ public interface View {
     int showUserActionView();
 
     void showShoppingResult(double totalPrice, Map<Product, Integer> shoppingList);
+
+    boolean showJoinMembershipView();
 }
