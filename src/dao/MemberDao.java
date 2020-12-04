@@ -45,4 +45,11 @@ public interface MemberDao {
      * @return {@code true} if the user is a super member; {@code false} otherwise.
      */
     boolean isSuperMember(long userId);
+
+    /**
+     * mark the specified user is a super member.
+     *
+     * @param userId the id of the user.
+     */
+    void joinSuperMember(long userId);
 }
