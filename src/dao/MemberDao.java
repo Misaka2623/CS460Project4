@@ -37,4 +37,12 @@ public interface MemberDao {
      * @return the memberId. 0 if there is no such username in the database.
      */
     long getMemberIdByUsername(String username);
+
+    /**
+     * indicate whether the specified user is a super member or not.
+     *
+     * @param userId the id of the user.
+     * @return {@code true} if the user is a super member; {@code false} otherwise.
+     */
+    boolean isSuperMember(long userId);
 }
