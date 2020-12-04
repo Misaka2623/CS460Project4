@@ -28,7 +28,13 @@ public interface View {
 
     int showShoppingAction();
 
-    List<Long> showShoppingPage();
+    void showAddToCartFailView(long productId, int stock);
+
+    int showUserActionView();
+
+    void showShoppingResult(double totalPrice, Map<Product, Integer> shoppingList);
+
+    boolean showJoinMembershipView();
 
     String requireUsername();
 
@@ -56,21 +62,13 @@ public interface View {
 
     String requirePostalCode();
 
-    void newPage();
-
-    void exit();
-
     long requireProductId();
 
     int requireProductAmount();
 
-    void showAddToCartFailView(long productId, int stock);
-
     String requirePaymentMethod();
 
-    int showUserActionView();
+    void newPage();
 
-    void showShoppingResult(double totalPrice, Map<Product, Integer> shoppingList);
-
-    boolean showJoinMembershipView();
+    void exit();
 }
