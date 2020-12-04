@@ -67,4 +67,8 @@ public interface View {
     void showAddToCartFailView(long productId, int stock);
 
     String requirePaymentMethod();
+
+    int showUserActionView();
+
+    void showShoppingResult(double totalPrice, Map<Product, Integer> shoppingList);
 }
