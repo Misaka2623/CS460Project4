@@ -29,4 +29,12 @@ public interface MemberDao {
      * @return the id of the member.
      */
     long insert(Member member);
+
+    /**
+     * get the member id by the specified username.
+     *
+     * @param username the username to find the memberId.
+     * @return the memberId. 0 if there is no such username in the database.
+     */
+    long getMemberIdByUsername(String username);
 }
