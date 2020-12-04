@@ -160,7 +160,7 @@ public class Main {
                 break;
             case 2:
                 // become super member
-                // TODO: 12/4/20
+                joinSuperMember();
                 break;
             default:
                 throw new IllegalStateException();
@@ -203,5 +203,13 @@ public class Main {
                 }
         }
         addProduct(products, cart);
+    }
+
+    private static void joinSuperMember() {
+        view.newPage();
+        boolean joined = view.showJoinMembershipView();
+        if (joined) {
+            memberDao.joinSuperMember(userId);
+        }
     }
 }
