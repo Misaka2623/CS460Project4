@@ -1,9 +1,10 @@
 -- TODO: delete this file when release
 -- this sql is only a memo of the statements
 
-set autocommit off;
-set define off;
-DROP TABLE address PURGE;
+SET autocommit OFF;
+SET DEFINE OFF;
+
+DROP TABLE "address" PURGE;
 CREATE TABLE "address"
 (
     "address_id"  number(10)   NOT NULL PRIMARY KEY,
@@ -15,9 +16,9 @@ CREATE TABLE "address"
     "postal_code" varchar(16)  NOT NULL
 );
 
-GRANT SELECT ON address TO public;
+GRANT SELECT ON "address" TO PUBLIC;
 
-DROP TABLE person PURGE;
+DROP TABLE "person" PURGE;
 CREATE TABLE "person"
 (
     "person_id"  number(10)    NOT NULL PRIMARY KEY,
@@ -30,9 +31,9 @@ CREATE TABLE "person"
     FOREIGN KEY ("address_id") REFERENCES "address" ("address_id")
 );
 
-GRANT SELECT ON person TO public;
+GRANT SELECT ON "person" TO PUBLIC;
 
-DROP TABLE member PURGE;
+DROP TABLE "member" PURGE;
 CREATE TABLE "member"
 (
     "member_id" number(10)    NOT NULL PRIMARY KEY,
@@ -43,7 +44,7 @@ CREATE TABLE "member"
     FOREIGN KEY ("person_id") REFERENCES "person" ("person_id")
 );
 
-GRANT SELECT ON member TO public;
+GRANT SELECT ON "member" TO PUBLIC;
 
 DROP TABLE "group" PURGE;
 CREATE TABLE "group"
@@ -52,9 +53,9 @@ CREATE TABLE "group"
     "name"     varchar(255) NOT NULL
 );
 
-GRANT SELECT ON "group" TO public;
+GRANT SELECT ON "group" TO PUBLIC;
 
-DROP TABLE employee PURGE;
+DROP TABLE "employee" PURGE;
 CREATE TABLE "employee"
 (
     "employee_id" number(10)   NOT NULL PRIMARY KEY,
@@ -65,18 +66,18 @@ CREATE TABLE "employee"
     FOREIGN KEY ("group_id") REFERENCES "group" ("group_id")
 );
 
-GRANT SELECT ON employee TO public;
+GRANT SELECT ON "employee" TO PUBLIC;
 
-DROP TABLE category PURGE;
+DROP TABLE "category" PURGE;
 CREATE TABLE "category"
 (
     "category_id" number(10)   NOT NULL PRIMARY KEY,
     "name"        varchar(255) NOT NULL
 );
 
-GRANT SELECT ON category TO public;
+GRANT SELECT ON "category" TO PUBLIC;
 
-DROP TABLE product PURGE;
+DROP TABLE "product" PURGE;
 CREATE TABLE "product"
 (
     "product_id"          number(10)              NOT NULL PRIMARY KEY,
@@ -87,9 +88,9 @@ CREATE TABLE "product"
     FOREIGN KEY ("category_id") REFERENCES "category" ("category_id")
 );
 
-GRANT SELECT ON product TO public;
+GRANT SELECT ON "product" TO PUBLIC;
 
-DROP TABLE supplier PURGE;
+DROP TABLE "supplier" PURGE;
 CREATE TABLE "supplier"
 (
     "supplier_id"    number(10)   NOT NULL PRIMARY KEY,
@@ -100,9 +101,9 @@ CREATE TABLE "supplier"
     FOREIGN KEY ("contact_person") REFERENCES "person" ("person_id")
 );
 
-GRANT SELECT ON supplier TO public;
+GRANT SELECT ON "supplier" TO PUBLIC;
 
-DROP TABLE warehouse PURGE;
+DROP TABLE "warehouse" PURGE;
 CREATE TABLE "warehouse"
 (
     "warehouse_id"   number(10)   NOT NULL PRIMARY KEY,
@@ -115,9 +116,9 @@ CREATE TABLE "warehouse"
     FOREIGN KEY ("product_id") REFERENCES "product" ("product_id")
 );
 
-GRANT SELECT ON warehouse TO public;
+GRANT SELECT ON "warehouse" TO PUBLIC;
 
-DROP TABLE sale PURGE;
+DROP TABLE "sale" PURGE;
 CREATE TABLE "sale"
 (
     "sale_id"        number(10)   NOT NULL PRIMARY KEY,
@@ -128,9 +129,9 @@ CREATE TABLE "sale"
     FOREIGN KEY ("member_id") REFERENCES "member" ("member_id")
 );
 
-GRANT SELECT ON sale TO public;
+GRANT SELECT ON "sale" TO PUBLIC;
 
-DROP TABLE sub_sale PURGE;
+DROP TABLE "sub_sale" PURGE;
 CREATE TABLE "sub_sale"
 (
     "sub_sale_id" number(10)    NOT NULL PRIMARY KEY,
@@ -142,5 +143,5 @@ CREATE TABLE "sub_sale"
     FOREIGN KEY ("sale_id") REFERENCES "sale" ("sale_id")
 );
 
-GRANT SELECT ON sub_sale TO public;
+GRANT SELECT ON "sub_sale" TO PUBLIC;
 
