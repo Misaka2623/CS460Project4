@@ -103,17 +103,31 @@ public class TextView implements View {
 
     @Override
     public String requireFirstName() {
-        return null;
+        return requireString("Please enter your first name", "Please enter a valid name",
+                Pattern.compile("^[a-zA-Z. ]*$"));
     }
 
     @Override
     public String requireLastName() {
-        return null;
+        return requireString("Please enter your last name", "Please enter a valid name",
+                Pattern.compile("^[a-zA-Z. ]*$"));
     }
 
     @Override
     public Gender requireGender() {
-        return null;
+        StringBuilder instruction = new StringBuilder();
+        instruction.append("Please enter your gender (");
+        for (Gender gender : Gender.values()) {
+            instruction.append(gender.name().toLowerCase()).append(", ");
+        }
+        instruction.delete(instruction.length() - 2, instruction.length()).append(")");
+        String input = requireString(instruction.toString());
+        try {
+            return Gender.valueOf(input.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Please enter a correct gender");
+            return requireGender();
+        }
     }
 
     @Override
