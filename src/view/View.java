@@ -33,6 +33,8 @@ public interface View {
 
     void showShoppingResult(double totalPrice, Map<Product, Integer> shoppingList);
 
+    void showProductIdNotFoundView(long productId);
+
     boolean showJoinMembershipView();
 
     String requireUsername();

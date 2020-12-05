@@ -194,13 +194,21 @@ public class Main {
                 break;
             case 2:
                 long productId = view.requireProductId();
+                Product fakeProduct = new Product(productId);
+                if (!products.containsKey(fakeProduct)) {
+                    view.showProductIdNotFoundView(productId);
+                    break;
+                }
                 int amount = view.requireProductAmount();
-                int stock = products.get(new Product(productId));
+                int stock = products.get(fakeProduct);
                 if (stock < amount) {
                     view.showAddToCartFailView(productId, stock);
                 } else {
                     cart.put(productId, cart.getOrDefault(productId, 0) + amount);
                 }
+                break;
+            default:
+                throw new IllegalStateException();
         }
         addProduct(products, cart);
     }
