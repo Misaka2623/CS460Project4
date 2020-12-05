@@ -43,60 +43,62 @@ public class TextView implements View {
 
     @Override
     public void showSignInFailView() {
-
+        System.out.println("Sorry, the username and password do not match.");
     }
 
     @Override
     public void showSignUpSuccessView() {
-
+        System.out.println("Congratulation, sign up success!");
     }
 
     @Override
     public void showDuplicateUsernameView() {
-
+        System.out.println("The username you entered is already exist, please use a new username.");
     }
 
     @Override
     public void showGreet(String username) {
-
+        System.out.printf("Welcome, %s!\n", username);
     }
 
     @Override
     public void showProductList(Map<Product, Integer> products) {
-
+        int maxLength = Math.max("product".length(),
+                products.keySet().stream().mapToInt(product -> product.getName().length()).max().orElse(0));
+        System.out.printf(String.format("%% %ds\t product id\n", maxLength), "name");
+        products.forEach((key, value) ->
+                System.out.printf(String.format("%% %ds\t %%d\n", maxLength), key.getName(), value));
     }
 
     @Override
     public int showShoppingAction() {
-        return 0;
+        return requireOption("pay the bill", "show product list", "add product to cart");
     }
 
     @Override
     public void showAddToCartFailView(long productId, int stock) {
-
+        System.out.printf("The product %d only has %d in stock, please enter a valid amount.\n", productId, stock);
     }
 
     @Override
     public int showUserActionView() {
-        return 0;
+        return requireOption("logout", "shopping", "become a super member");
     }
 
     @Override
     public void showShoppingResult(double totalPrice, Map<Product, Integer> shoppingList) {
-        int nameLength =
-                shoppingList.keySet().stream().mapToInt(product -> product.getName().length()).max().orElse(0);
-        nameLength = Math.max(nameLength, "discount".length());
+        int nameLength = Math.max("discount".length(),
+                shoppingList.keySet().stream().mapToInt(product -> product.getName().length()).max().orElse(0));
 
-        int amountLength =
-                shoppingList.values().stream().mapToInt(i -> String.valueOf(i).length()).max().orElse(0);
-        amountLength = Math.max(amountLength, "amount".length());
+        int amountLength = Math.max("amount".length(),
+                shoppingList.values().stream().mapToInt(i -> String.valueOf(i).length()).max().orElse(0));
 
         System.out.printf(
                 String.format("%% %ds %% %ds\t %%s\n", nameLength, amountLength), "product", "amount", "price");
-        for (Map.Entry<Product, Integer> entry : shoppingList.entrySet()) {
-            System.out.printf(String.format("%% %ds %% %dd\t %%.2f\n", nameLength, amountLength),
-                    entry.getKey().getName(), entry.getValue(), entry.getKey().getRetailPrice() * entry.getValue());
-        }
+        shoppingList.forEach((key, value) ->
+                System.out.printf(String.format("%% %ds %% %dd\t %%.2f\n", nameLength, amountLength),
+                        key.getName(), value, key.getRetailPrice() * value)
+        );
         System.out.println();
 
         double price =
@@ -108,7 +110,7 @@ public class TextView implements View {
 
     @Override
     public void showProductIdNotFoundView(long productId) {
-        
+        System.out.printf("The id %d you entered does not refer any product in the list.\n", productId);
     }
 
     @Override
