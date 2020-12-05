@@ -218,6 +218,7 @@ public class Main {
         boolean joined = view.showJoinMembershipView();
         if (joined) {
             memberDao.joinSuperMember(userId);
+            view.showJoinMembershipSuccessView();
         }
     }
 }

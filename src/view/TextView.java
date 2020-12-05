@@ -83,12 +83,48 @@ public class TextView implements View {
 
     @Override
     public void showShoppingResult(double totalPrice, Map<Product, Integer> shoppingList) {
+        int nameLength =
+                shoppingList.keySet().stream().mapToInt(product -> product.getName().length()).max().orElse(0);
+        nameLength = Math.max(nameLength, "discount".length());
 
+        int amountLength =
+                shoppingList.values().stream().mapToInt(i -> String.valueOf(i).length()).max().orElse(0);
+        amountLength = Math.max(amountLength, "amount".length());
+
+        System.out.printf(
+                String.format("%% %ds %% %ds\t %%s\n", nameLength, amountLength), "product", "amount", "price");
+        for (Map.Entry<Product, Integer> entry : shoppingList.entrySet()) {
+            System.out.printf(String.format("%% %ds %% %dd\t %%.2f\n", nameLength, amountLength),
+                    entry.getKey().getName(), entry.getValue(), entry.getKey().getRetailPrice() * entry.getValue());
+        }
+        System.out.println();
+
+        double price =
+                shoppingList.entrySet().stream().mapToDouble(kv -> kv.getKey().getRetailPrice() * kv.getValue()).sum();
+        double discount = totalPrice - price;
+        System.out.printf(String.format("%% %ds %% %ds\t-%%.2f\n", nameLength, amountLength), "discount", "", discount);
+        System.out.printf(String.format("%% %ds %% %ds\t %%.2f\n", nameLength, amountLength), "total", "", totalPrice);
+    }
+
+    @Override
+    public void showProductIdNotFoundView(long productId) {
+        
     }
 
     @Override
     public boolean showJoinMembershipView() {
-        return false;
+        char input = requireString(
+                "To join our membership, you will get membership discount when you buy any product. You will " +
+                        "also get 1 point for each dollar you spend. You can redeem $1 store credit using 100 reward " +
+                        "point. To join the membership, you need to pay $5 fee each month. Are you sure you want to " +
+                        "join our membership? (Y/N)", "Please enter \"Y\" or \"N\"",
+                Pattern.compile("^[YN]$", Pattern.CASE_INSENSITIVE)).toLowerCase().charAt(0);
+        return input == 'y';
+    }
+
+    @Override
+    public void showJoinMembershipSuccessView() {
+        System.out.println("Congratulation! You are our super member now!");
     }
 
     @Override

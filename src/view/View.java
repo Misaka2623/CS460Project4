@@ -37,6 +37,8 @@ public interface View {
 
     boolean showJoinMembershipView();
 
+    void showJoinMembershipSuccessView();
+
     String requireUsername();
 
     String requirePassword();
