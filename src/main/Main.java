@@ -62,7 +62,7 @@ public class Main {
                 break;
             case 2:
                 // manager
-                // TODO: 12/1/20
+                manageDatabase();
                 break;
             default:
                 throw new IllegalStateException();
@@ -219,6 +219,60 @@ public class Main {
         if (joined) {
             memberDao.joinSuperMember(userId);
             view.showJoinMembershipSuccessView();
+        }
+    }
+
+    private static void manageDatabase() {
+        int option = view.showManagerMainView();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // address
+                // TODO: 12/5/20
+                break;
+            case 2:
+                // category
+                // TODO: 12/5/20
+                break;
+            case 3:
+                // employee
+                // TODO: 12/5/20
+                break;
+            case 4:
+                // group
+                // TODO: 12/5/20
+                break;
+            case 5:
+                // member
+                // TODO: 12/5/20
+                break;
+            case 6:
+                // person
+                // TODO: 12/5/20
+                break;
+            case 7:
+                // product
+                // TODO: 12/5/20
+                break;
+            case 8:
+                // sale
+                // TODO: 12/5/20
+                break;
+            case 9:
+                // sub sale
+                // TODO: 12/5/20
+                break;
+            case 10:
+                // supplier
+                // TODO: 12/5/20
+                break;
+            case 11:
+                // warehouse
+                // TODO: 12/5/20
+                break;
+            default:
+                throw new IllegalStateException();
         }
     }
 }

@@ -74,4 +74,6 @@ public interface View {
     void newPage();
 
     void exit();
+
+    int showManagerMainView();
 }
