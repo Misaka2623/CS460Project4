@@ -5,6 +5,23 @@ import bean.Product;
 import java.util.Map;
 
 public interface ProductDao {
+
+    /**
+     * insert a line in product table
+     *
+     * @param product         an object of Product
+     * @return                the id of the product.
+     */
+    long insert(Product product);
+
+    /**
+     * insert a line in product table
+     *
+     * @param productID       long type of product id
+     * @return                whether it's success
+     */
+    boolean delete(long productId);
+
     /**
      * calculate the amount of the product by specified product id.
      *
