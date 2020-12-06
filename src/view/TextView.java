@@ -249,6 +249,68 @@ public class TextView implements View {
         System.out.println("Thank you for using CS460 shopping app. Have a good day!");
     }
 
+    @Override
+    public int showManagerMainView() {
+        return requireOption("back", "manage addresses", "manage categories", "manage employees",
+                "manage groups", "manage members", "manage people", "manage products", "manage sales",
+                "manage sub sales", "manage suppliers", "manage warehouses");
+    }
+
+    @Override
+    public int manageAddress() {
+        return requireOption("back", "add record", "delete record", "list all records");
+    }
+
+    @Override
+    public int manageCategory() {
+        return requireOption("back", "add record", "delete record", "list all records");
+    }
+
+    @Override
+    public int manageEmployee() {
+        return requireOption("back", "add record", "delete record", "list all records");
+    }
+
+    @Override
+    public int manageGroup() {
+        return requireOption("back", "add record", "delete record", "list all records");
+    }
+
+    @Override
+    public int manageMember() {
+        return requireOption("back", "add record", "delete record", "list all records");
+    }
+
+    @Override
+    public int managePerson() {
+        return requireOption("back", "add record", "delete record", "list all records");
+    }
+
+    @Override
+    public int manageProduct() {
+        return requireOption("back", "add record", "delete record", "list all records");
+    }
+
+    @Override
+    public int manageSale() {
+        return requireOption("back", "add record", "delete record", "list all records");
+    }
+
+    @Override
+    public int manageSubSale() {
+        return requireOption("back", "add record", "delete record", "list all records");
+    }
+
+    @Override
+    public int manageSupplier() {
+        return requireOption("back", "add record", "delete record", "list all records");
+    }
+
+    @Override
+    public int manageWarehouse() {
+        return requireOption("back", "add record", "delete record", "list all records");
+    }
+
     private int requireOption(String quit, String... options) {
         String instruction = IntStream.range(0, options.length)
                 .mapToObj(i -> String.format("%d\t%s\n", i + 1, options[i]))
