@@ -20,7 +20,7 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
         if(line1 == null || city == null || state == null || post_code == null)
             return -1;
 
-        String query = String.format("INSERT INTO address VALUES (%d,%s,%s,%s,%s,%s,%s);", id, line1, line2, line3, city, state, post_code);
+        String query = String.format("INSERT INTO address VALUES (%d,%s,%s,%s,%s,%s,%s)", id, line1, line2, line3, city, state, post_code);
         executeSql(query);
 
         return address.getAddressId();
