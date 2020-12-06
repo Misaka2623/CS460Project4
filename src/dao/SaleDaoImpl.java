@@ -8,6 +8,12 @@ public class SaleDaoImpl extends BaseDao implements SaleDao {
     }
 
     @Override
+    public boolean delete(long saleId){
+        //TODO: delete sale record by saleID and the corresponding sub_sale recording
+        return 0;
+    }
+
+    @Override
     public  double getTotalPriceById(long saleId){
         //TODO: get total price
         return 0.0;

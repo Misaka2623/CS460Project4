@@ -14,6 +14,14 @@ public interface SaleDao {
     long insert(long memberId, String paymentMethod, Map<Long, Integer> cart);
 
     /**
+     * insert a line in product table
+     *
+     * @param saleId       long type of sale id
+     * @return                whether it's success
+     */
+    boolean delete(long saleId);
+
+    /**
      * get the total price of a transaction by the saleId.
      *
      * @param saleId the saleId.
