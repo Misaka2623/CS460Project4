@@ -77,5 +77,25 @@ public interface View {
 
     int showManagerMainView();
 
+    int manageAddress();
+
+    int manageCategory();
+
+    int manageEmployee();
+
+    int manageGroup();
+
+    int manageMember();
+
+    int managePerson();
+
+    int manageProduct();
+
+    int manageSale();
+
+    int manageSubSale();
+
+    int manageSupplier();
+
     int manageWarehouse();
 }

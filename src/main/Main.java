@@ -229,43 +229,43 @@ public class Main {
                 return;
             case 1:
                 // address
-                // TODO: 12/5/20
+                manageAddress();
                 break;
             case 2:
                 // category
-                // TODO: 12/5/20
+                manageCategory();
                 break;
             case 3:
                 // employee
-                // TODO: 12/5/20
+                manageEmployee();
                 break;
             case 4:
                 // group
-                // TODO: 12/5/20
+                manageGroup();
                 break;
             case 5:
                 // member
-                // TODO: 12/5/20
+                manageMember();
                 break;
             case 6:
                 // person
-                // TODO: 12/5/20
+                managePerson();
                 break;
             case 7:
                 // product
-                // TODO: 12/5/20
+                manageProduct();
                 break;
             case 8:
                 // sale
-                // TODO: 12/5/20
+                manageSale();
                 break;
             case 9:
                 // sub sale
-                // TODO: 12/5/20
+                manageSubSale();
                 break;
             case 10:
                 // supplier
-                // TODO: 12/5/20
+                manageSupplier();
                 break;
             case 11:
                 // warehouse
@@ -274,6 +274,246 @@ public class Main {
             default:
                 throw new IllegalStateException();
         }
+    }
+
+    private static void manageAddress() {
+        view.newPage();
+        int option = view.manageAddress();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // add address record
+                // TODO: 12/6/20
+                break;
+            case 2:
+                // delete address record
+                // TODO: 12/6/20
+                break;
+            case 3:
+                // list all address records
+                // TODO: 12/6/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        manageAddress();
+    }
+
+    private static void manageCategory() {
+        view.newPage();
+        int option = view.manageCategory();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // add category record
+                // TODO: 12/6/20
+                break;
+            case 2:
+                // delete category record
+                // TODO: 12/6/20
+                break;
+            case 3:
+                // list all category records
+                // TODO: 12/6/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        manageCategory();
+    }
+
+    private static void manageEmployee() {
+        view.newPage();
+        int option = view.manageEmployee();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // add employee record
+                // TODO: 12/6/20
+                break;
+            case 2:
+                // delete employee record
+                // TODO: 12/6/20
+                break;
+            case 3:
+                // list all employee records
+                // TODO: 12/6/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        manageEmployee();
+    }
+
+    private static void manageGroup() {
+        view.newPage();
+        int option = view.manageGroup();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // add group record
+                // TODO: 12/6/20
+                break;
+            case 2:
+                // delete group record
+                // TODO: 12/6/20
+                break;
+            case 3:
+                // list all group records
+                // TODO: 12/6/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        manageGroup();
+    }
+
+    private static void manageMember() {
+        view.newPage();
+        int option = view.manageMember();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // add member record
+                // TODO: 12/6/20
+                break;
+            case 2:
+                // delete member record
+                // TODO: 12/6/20
+                break;
+            case 3:
+                // list all member records
+                // TODO: 12/6/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        manageMember();
+    }
+
+    private static void managePerson() {
+        view.newPage();
+        int option = view.managePerson();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // add person record
+                // TODO: 12/6/20
+                break;
+            case 2:
+                // delete person record
+                // TODO: 12/6/20
+                break;
+            case 3:
+                // list all person records
+                // TODO: 12/6/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        managePerson();
+    }
+
+    private static void manageProduct() {
+        view.newPage();
+        int option = view.manageProduct();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // add product record
+                // TODO: 12/6/20
+                break;
+            case 2:
+                // delete product record
+                // TODO: 12/6/20
+                break;
+            case 3:
+                // list all product records
+                // TODO: 12/6/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        manageProduct();
+    }
+
+    private static void manageSale() {
+        view.newPage();
+        int option = view.manageSale();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // add sale record
+                // TODO: 12/6/20
+                break;
+            case 2:
+                // delete sale record
+                // TODO: 12/6/20
+                break;
+            case 3:
+                // list all sale records
+                // TODO: 12/6/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        manageSale();
+    }
+
+    private static void manageSubSale() {
+        view.newPage();
+        int option = view.manageSubSale();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // add sub sale record
+                // TODO: 12/6/20
+                break;
+            case 2:
+                // delete sub sale record
+                // TODO: 12/6/20
+                break;
+            case 3:
+                // list all sub sale records
+                // TODO: 12/6/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        manageSubSale();
+    }
+
+    private static void manageSupplier() {
+        view.newPage();
+        int option = view.manageSupplier();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // add supplier record
+                // TODO: 12/6/20
+                break;
+            case 2:
+                // delete supplier record
+                // TODO: 12/6/20
+                break;
+            case 3:
+                // list all supplier records
+                // TODO: 12/6/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        manageSupplier();
     }
 
     private static void manageWarehouse() {
