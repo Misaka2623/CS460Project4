@@ -269,10 +269,34 @@ public class Main {
                 break;
             case 11:
                 // warehouse
-                // TODO: 12/5/20
+                manageWarehouse();
                 break;
             default:
                 throw new IllegalStateException();
         }
+    }
+
+    private static void manageWarehouse() {
+        view.newPage();
+        int option = view.manageWarehouse();
+        switch (option) {
+            case 0:
+                return;
+            case 1:
+                // add warehouse record
+                // TODO: 12/6/20
+                break;
+            case 2:
+                // delete warehouse record
+                // TODO: 12/6/20
+                break;
+            case 3:
+                // list all warehouse records
+                // TODO: 12/6/20
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        manageWarehouse();
     }
 }

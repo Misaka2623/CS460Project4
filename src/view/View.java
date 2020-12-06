@@ -76,4 +76,6 @@ public interface View {
     void exit();
 
     int showManagerMainView();
+
+    int manageWarehouse();
 }
