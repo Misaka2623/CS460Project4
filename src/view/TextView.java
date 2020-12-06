@@ -131,30 +131,30 @@ public class TextView implements View {
 
     @Override
     public String requireUsername() {
-        return requireString("Please enter your username");
+        return requireString("Please enter the username");
     }
 
     @Override
     public String requirePassword() {
-        return requireString("Please enter your password");
+        return requireString("Please enter the password");
     }
 
     @Override
     public String requireFirstName() {
-        return requireString("Please enter your first name", "Please enter a valid name",
+        return requireString("Please enter the first name", "Please enter a valid name",
                 Pattern.compile("^[a-zA-Z. ]*$"));
     }
 
     @Override
     public String requireLastName() {
-        return requireString("Please enter your last name", "Please enter a valid name",
+        return requireString("Please enter the last name", "Please enter a valid name",
                 Pattern.compile("^[a-zA-Z. ]*$"));
     }
 
     @Override
     public Gender requireGender() {
         StringBuilder instruction = new StringBuilder();
-        instruction.append("Please enter your gender (");
+        instruction.append("Please enter the gender (");
         for (Gender gender : Gender.values()) {
             instruction.append(gender.name().toLowerCase()).append(", ");
         }
@@ -170,42 +170,42 @@ public class TextView implements View {
 
     @Override
     public Date requireBirthday() {
-        return requireDate("Please enter your birthday, press enter if you do not want to tell");
+        return requireDate("Please enter the birthday, press enter if you do not want to tell");
     }
 
     @Override
     public String requirePhoneNumber() {
-        return requireString("Please enter your phone number",
+        return requireString("Please enter the phone number",
                 "Please enter a correct phone number (only numbers)", Pattern.compile("^\\d{10,15}$"));
     }
 
     @Override
     public String requireLine1() {
-        return requireString("Please enter the first line of your address");
+        return requireString("Please enter the first line of the address");
     }
 
     @Override
     public String requireLine2() {
         String input = requireString(
-                "Please enter the second line of your address, press enter if there is no second line");
+                "Please enter the second line of the address, press enter if there is no second line");
         return "".equals(input) ? null : input;
     }
 
     @Override
     public String requireLine3() {
         String input = requireString(
-                "Please enter the last line of your address, press enter if there is no third line");
+                "Please enter the last line of the address, press enter if there is no third line");
         return "".equals(input) ? null : input;
     }
 
     @Override
     public String requireCity() {
-        return requireString("Please enter the city of your address");
+        return requireString("Please enter the city of the address");
     }
 
     @Override
     public String requireState() {
-        String input = requireString("Please enter the state of your address",
+        String input = requireString("Please enter the state of the address",
                 "Please enter a correct state", Pattern.compile("^[a-zA-Z() ]*$"));
         if (Arrays.binarySearch(State.STATES, input) != -1) {
             return input;
@@ -217,7 +217,7 @@ public class TextView implements View {
 
     @Override
     public String requirePostalCode() {
-        return requireString("Please enter your postal code",
+        return requireString("Please enter the postal code",
                 "Please enter a correct postal code (only numbers)",
                 Pattern.compile("^\\d{5}([ \\-]\\d{4})?$"));
     }
@@ -236,7 +236,7 @@ public class TextView implements View {
 
     @Override
     public String requirePaymentMethod() {
-        return requireString("Please enter your payment method");
+        return requireString("Please enter the payment method");
     }
 
     @Override

@@ -98,4 +98,6 @@ public interface View {
     int manageSupplier();
 
     int manageWarehouse();
+
+    void showInsertAddressSuccessView();
 }

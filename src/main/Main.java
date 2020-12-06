@@ -127,8 +127,9 @@ public class Main {
         person.setBirthday(view.requireBirthday());
         person.setPhone(view.requirePhoneNumber());
         address.setLine1(view.requireLine1());
-        address.setLine2(view.requireLine2());
-        address.setLine3(view.requireLine3());
+        String line2 = view.requireLine2();
+        address.setLine2(line2);
+        address.setLine3(line2 == null ? null : view.requireLine3());
         address.setCity(view.requireCity());
         address.setState(view.requireState());
         address.setPostalCode(view.requirePostalCode());
@@ -284,7 +285,17 @@ public class Main {
                 return;
             case 1:
                 // add address record
-                // TODO: 12/6/20
+                Address address = new Address();
+                address.setLine1(view.requireLine1());
+                String line2 = view.requireLine2();
+                address.setLine2(line2);
+                address.setLine3(line2 == null ? null : view.requireLine3());
+                address.setCity(view.requireCity());
+                address.setState(view.requireState());
+                address.setPostalCode(view.requirePostalCode());
+
+                addressDao.insert(address);
+                view.showInsertAddressSuccessView();
                 break;
             case 2:
                 // delete address record
