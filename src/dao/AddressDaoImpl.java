@@ -17,7 +17,7 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
         String state = address.getState();
         String post_code = address.getPostalCode();
 
-        if(id == none || line1 == none || city == none || state == none || post_code == none)
+        if(line1 == null || city == null || state == null || post_code == null)
             return -1;
 
         String query = "INSERT INTO address VALUES (id,line1,line2,line3,city,state,post_code);";
