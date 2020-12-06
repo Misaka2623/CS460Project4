@@ -18,8 +18,8 @@ public class PersonDaoImpl extends BaseDao implements PersonDao {
         if( first_name == null || last_name  == null || gender == null)
             return -1;
 
-        //TODO: Person object and Date object
-        String query = String.format("INSERT INTO person VALUES (%d,%s,%s,%s,%s,%s,%s)", person_id, first_name, last_name, gender, birthday, address_id, phone);
+        //TODO: Date object
+        String query = String.format("INSERT INTO person VALUES (%d,%s,%s,%d,%s,%d,%d)", person_id, first_name, last_name, gender.getValue(), birthday, address_id, phone);
         ResultSet answer = executeSql(query);
 
         return person.getPersonId();
