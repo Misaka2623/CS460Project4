@@ -26,7 +26,7 @@ public class MemberDaoImpl extends BaseDao implements MemberDao {
     @Override
 
     public long insert(Member member){
-        address.setAddressId(generateId());
+        member.setMemberId(generateId());
         long member_id = member.getMemberId();
         String username = member.getUsername();
         String password = member.getPassword();
