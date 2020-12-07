@@ -2,6 +2,8 @@ package dao;
 
 import bean.Address;
 
+import java.util.List;
+
 public interface AddressDao {
     /**
      * insert a line of specified address object into the table. some fields of the specified address might be empty.
@@ -12,4 +14,8 @@ public interface AddressDao {
      * @return the id of the address.
      */
     long insert(Address address);
+
+    boolean delete(long addressId);
+
+    List<Address> getAll();
 }
