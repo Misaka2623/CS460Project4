@@ -1,9 +1,11 @@
 package view;
 
+import bean.Address;
 import bean.Product;
 import util.Gender;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Map;
 
 public interface View {
@@ -100,4 +102,24 @@ public interface View {
     int manageWarehouse();
 
     void showInsertAddressSuccessView();
+
+    long requireAddressId();
+
+    void deleteAddressSuccess();
+
+    void deleteAddressFail();
+
+    void listAddresses(List<Address> addresses);
+
+    String requireCategoryName();
+
+    void addCategoryFail();
+
+    void addCategorySuccess();
+
+    long requireCategoryId();
+
+    void deleteCategorySuccess();
+
+    void deleteCategoryFail();
 }

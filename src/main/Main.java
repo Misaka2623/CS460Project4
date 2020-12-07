@@ -1,11 +1,14 @@
 package main;
 
 import bean.Address;
+import bean.Category;
 import bean.Member;
 import bean.Person;
 import bean.Product;
 import dao.AddressDao;
 import dao.AddressDaoImpl;
+import dao.CategoryDao;
+import dao.CategoryDaoImpl;
 import dao.MemberDao;
 import dao.MemberDaoImpl;
 import dao.PersonDao;
@@ -24,12 +27,14 @@ import view.TextView;
 import view.View;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Main {
     private static final View view = new TextView();
     private static final AddressDao addressDao = new AddressDaoImpl();
+    private static final CategoryDao categoryDao = new CategoryDaoImpl();
     private static final MemberDao memberDao = new MemberDaoImpl();
     private static final PersonDao personDao = new PersonDaoImpl();
     private static final ProductDao productDao = new ProductDaoImpl();
@@ -299,11 +304,18 @@ public class Main {
                 break;
             case 2:
                 // delete address record
-                // TODO: 12/6/20
+                long addressId = view.requireAddressId();
+                boolean success = addressDao.delete(addressId);
+                if (success) {
+                    view.deleteAddressSuccess();
+                } else {
+                    view.deleteAddressFail();
+                }
                 break;
             case 3:
                 // list all address records
-                // TODO: 12/6/20
+                List<Address> addresses = addressDao.getAll();
+                view.listAddresses(addresses);
                 break;
             default:
                 throw new IllegalStateException();
@@ -317,13 +329,27 @@ public class Main {
         switch (option) {
             case 0:
                 return;
-            case 1:
+            case 1: {
                 // add category record
-                // TODO: 12/6/20
+                Category category = new Category();
+                category.setName(view.requireCategoryName());
+                long categoryId = categoryDao.insert(category);
+                if (categoryId != -1) {
+                    view.addCategorySuccess();
+                } else {
+                    view.addCategoryFail();
+                }
                 break;
+            }
             case 2:
                 // delete category record
-                // TODO: 12/6/20
+                long categoryId = view.requireCategoryId();
+                boolean success = categoryDao.delete(categoryId);
+                if (success) {
+                    view.deleteCategorySuccess();
+                } else {
+                    view.deleteCategoryFail();
+                }
                 break;
             case 3:
                 // list all category records
