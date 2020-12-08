@@ -13,7 +13,7 @@ public class WarehouseDaoImpl extends BaseDao implements WarehouseDao {
         int amount = warehouse.getAmount();
         
         if(amount == null) {
-        	return 0
+        	return 0;
         }
         
         String query = String.format("INSERT INFO warehouse VALUES (d%, d%, s%, d%, d%)", supplierId, productId, incomingDate, purchasePrice, amount )
