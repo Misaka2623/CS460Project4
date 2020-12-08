@@ -1,5 +1,8 @@
 package dao;
 
+import bean.SubSale;
+
+import java.util.List;
 import java.util.Map;
 
 public interface SubSaleDao {
@@ -20,4 +23,8 @@ public interface SubSaleDao {
      * @return a map (key: productId, value: amount)
      */
     Map<Long, Integer> getShoppingListBySaleId(long saleId);
+
+    boolean delete(long subSaleId);
+
+    List<SubSale> getAll();
 }

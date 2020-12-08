@@ -2,6 +2,8 @@ package dao;
 
 import bean.Member;
 
+import java.util.List;
+
 public interface MemberDao {
     /**
      * check whether the given username and password is in the member table.
@@ -41,15 +43,19 @@ public interface MemberDao {
     /**
      * indicate whether the specified user is a super member or not.
      *
-     * @param userId the id of the user.
+     * @param memberId the id of the user.
      * @return {@code true} if the user is a super member; {@code false} otherwise.
      */
-    boolean isSuperMember(long userId);
+    boolean isSuperMember(long memberId);
 
     /**
      * mark the specified user is a super member.
      *
-     * @param userId the id of the user.
+     * @param memberId the id of the user.
      */
-    void joinSuperMember(long userId);
+    void joinSuperMember(long memberId);
+
+    boolean delete(long memberId);
+
+    List<Member> getAll();
 }

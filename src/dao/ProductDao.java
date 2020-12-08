@@ -2,6 +2,7 @@ package dao;
 
 import bean.Product;
 
+import java.util.List;
 import java.util.Map;
 
 public interface ProductDao {
@@ -53,4 +54,6 @@ public interface ProductDao {
      * of the related product.
      */
     Map<Product, Integer> getAllProducts();
+
+    List<Product> getAll();
 }

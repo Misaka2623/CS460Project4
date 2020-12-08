@@ -2,6 +2,8 @@ package dao;
 
 import bean.Person;
 
+import java.util.List;
+
 public interface PersonDao {
     /**
      * insert a line of specified person object into the table. some fields of the specified person might be empty.
@@ -12,4 +14,8 @@ public interface PersonDao {
      * @return the id of the person.
      */
     long insert(Person person);
+
+    boolean delete(long personId);
+
+    List<Person> getAll();
 }

@@ -1,5 +1,8 @@
 package dao;
 
+import bean.Sale;
+
+import java.util.List;
 import java.util.Map;
 
 public interface SaleDao {
@@ -28,4 +31,6 @@ public interface SaleDao {
      * @return the total price.
      */
     double getTotalPriceById(long saleId);
+
+    List<Sale> getAll();
 }
