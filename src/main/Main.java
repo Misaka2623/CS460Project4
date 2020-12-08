@@ -230,7 +230,7 @@ public class Main {
 
     private static void manageEmployee() {
         view.newPage();
-        int option = view.manageCategory();
+        int option = view.manageEmployee();
         switch (option) {
             case 0:
                 return;
