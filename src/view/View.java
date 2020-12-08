@@ -11,82 +11,38 @@ import bean.Sale;
 import bean.SubSale;
 import bean.Supplier;
 import bean.Warehouse;
-import util.Gender;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
 public interface View {
+    void newPage();
+
     void greet();
 
     int selectIdentity();
 
+    void exit();
+
     int signInOrUp();
 
-    void signInSuccess();
-
-    void signInFail();
-
-    void signUpSuccess();
-
-    void duplicateUsername();
-
-    void greetUser(String firstName, String lastName);
-
-    void listProducts(Map<Product, Integer> products);
-
-    int shoppingAction();
-
-    void addToCartFail(long productId, int stock);
-
-    int userAction();
-
-    void shoppingResult(double totalPrice, Map<Product, Integer> shoppingList);
-
-    void productIdNotFound(long productId);
-
-    boolean joinMembership();
-
-    void joinMembershipSuccess();
+    int managerMain();
 
     String requireUsername();
 
     String requirePassword();
 
-    String requireFirstName();
+    void signInSuccess();
 
-    String requireLastName();
+    void signInFail();
 
-    Gender requireGender();
+    Member requireMember();
 
-    Date requireBirthday();
+    Person requirePerson();
 
-    String requirePhoneNumber();
+    Address requireAddress();
 
-    String requireLine1();
-
-    String requireLine2();
-
-    String requireLine3();
-
-    String requireCity();
-
-    String requireState();
-
-    String requirePostalCode();
-
-    long requireProductId();
-
-    int requireProductAmount();
-
-    String requirePaymentMethod();
-
-    void newPage();
-
-    void exit();
-
-    int managerMain();
+    void signUpSuccess();
 
     int manageAddress();
 
@@ -110,6 +66,12 @@ public interface View {
 
     int manageWarehouse();
 
+    void greetUser(String firstName, String lastName);
+
+    int userAction();
+
+    void addAddressFail();
+
     void addAddressSuccess();
 
     long requireAddressId();
@@ -120,7 +82,7 @@ public interface View {
 
     void listAddresses(List<Address> addresses);
 
-    String requireCategoryName();
+    Category requireCategory();
 
     void addCategoryFail();
 
@@ -131,14 +93,6 @@ public interface View {
     void deleteCategorySuccess();
 
     void deleteCategoryFail();
-
-    void addAddressFail();
-
-    Address requireAddress();
-
-    Member requireMember();
-
-    Person requirePerson();
 
     void listCategories(List<Category> categories);
 
@@ -157,8 +111,6 @@ public interface View {
     void listEmployees(List<Employee> employees);
 
     Group requireGroup();
-
-    Category requireCategory();
 
     void addGroupFail();
 
@@ -201,6 +153,8 @@ public interface View {
     void addProductFail();
 
     void addProductSuccess();
+
+    long requireProductId();
 
     void deleteProductSuccess();
 
@@ -263,4 +217,22 @@ public interface View {
     void deleteWarehouseFail();
 
     void listWarehouses(List<Warehouse> warehouses);
+
+    String requirePaymentMethod();
+
+    void shoppingResult(double totalPrice, Map<Product, Integer> shoppingList);
+
+    boolean joinMembership();
+
+    void joinMembershipSuccess();
+
+    int shoppingAction();
+
+    void listProducts(Map<Product, Integer> products);
+
+    void productIdNotFound(long productId);
+
+    int requireProductAmount();
+
+    void addToCartFail(long productId, int stock);
 }
