@@ -9,7 +9,7 @@ public class PersonDaoImpl extends BaseDao implements PersonDao {
         person.setPersonId(generateId());
 
         if( person.getFirstName() == null || person.getLastName()  == null || person.getGender() == null)
-            return -1;
+            return 0;
 
         //TODO: Date object
         ResultSet answer = executeSql("INSERT INTO \"person\" VALUES (?,?,?,?,?,?,?)",
