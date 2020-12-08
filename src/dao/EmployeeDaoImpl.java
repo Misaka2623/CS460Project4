@@ -4,14 +4,25 @@ import com.sun.istack.internal.localization.NullLocalizable;
 
 public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
     public long insert(Employee employee){
-        return 0.0
+        employee.setEmployeeId(generateId());
+        if( employee.getPersonId() == null || employee.getSalary()  == null || employee.getGroupId() == null)
+            return 0;
+
+        ResultSet answer = executeSql("INSERT INTO \"employee\" VALUES (?,?,?,?)",
+        employee.getEmployeeId(), employee.getPersonId(), employee.getSalary(), employee.getGroupId());
+
+        return employee.setEmployeeId();
     }
 
     public boolean delete(long employeeId){
+         //TODO: check if delete sucess
+        ResultSet answer = executeSql("DELETE FROM employee WHERE employee_id = (?)", employeeId);
         return true;
     }
 
     public  List<Employee> getAll(){
-        return null;
+        //TODO: get all employees
+        List<employee> total = new List<Employee>();
+        return total;
     }
 }
