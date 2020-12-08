@@ -6,6 +6,7 @@ public class PersonDaoImpl extends BaseDao implements PersonDao {
     @Override
     public long insert(Person person){
         // return personId
+        person.setPersonId(generateId());
 
         if( person.getFirstName() == null || person.getLastName()  == null || person.getGender() == null)
             return -1;
