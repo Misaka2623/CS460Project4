@@ -7,7 +7,7 @@ public class SaleDaoImpl extends BaseDao implements SaleDao {
     @Override
     public long insert(long memberId, String paymentMethod, Map<Long, Integer> cart){
         //TODO: insert sale table and sub_sale table
-        int saleID = generateId();
+        long saleID = generateId();
 
         //missing total price
         //ResultSet answer = executeSql("INSERT INTO \"sale\" VALUES (?,CURRENT_TIMESTAMP,?,?,?)",
