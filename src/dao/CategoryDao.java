@@ -9,5 +9,7 @@ public interface CategoryDao {
 
     boolean delete(long categoryId);
 
+    long insert(String name);
+
     List<Category> getAll();
 }

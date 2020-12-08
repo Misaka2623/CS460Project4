@@ -1,7 +1,16 @@
 package view;
 
 import bean.Address;
+import bean.Category;
+import bean.Employee;
+import bean.Group;
+import bean.Member;
+import bean.Person;
 import bean.Product;
+import bean.Sale;
+import bean.SubSale;
+import bean.Supplier;
+import bean.Warehouse;
 import util.Gender;
 
 import java.sql.Date;
@@ -23,7 +32,7 @@ public interface View {
 
     void duplicateUsername();
 
-    void greetUser(String username);
+    void greetUser(String firstName, String lastName);
 
     void listProducts(Map<Product, Integer> products);
 
@@ -126,4 +135,132 @@ public interface View {
     void addAddressFail();
 
     Address requireAddress();
+
+    Member requireMember();
+
+    Person requirePerson();
+
+    void listCategories(List<Category> categories);
+
+    Employee requireEmployee();
+
+    void addEmployeeFail();
+
+    void addEmployeeSuccess();
+
+    long requireEmployeeId();
+
+    void deleteEmployeeSuccess();
+
+    void deleteEmployeeFail();
+
+    void listEmployees(List<Employee> employees);
+
+    Group requireGroup();
+
+    Category requireCategory();
+
+    void addGroupFail();
+
+    void addGroupSuccess();
+
+    long requireGroupId();
+
+    void deleteGroupSuccess();
+
+    void deleteGroupFail();
+
+    void listGroups(List<Group> groups);
+
+    void addMemberFail();
+
+    void addMemberSuccess();
+
+    long requireMemberId();
+
+    void deleteMemberSuccess();
+
+    void deleteMemberFail();
+
+    void listMembers(List<Member> members);
+
+    void addPersonFail();
+
+    void addPersonSuccess();
+
+    long requirePersonId();
+
+    void deletePersonSuccess();
+
+    void deletePersonFail();
+
+    void listPeople(List<Person> people);
+
+    Product requireProduct();
+
+    void addProductFail();
+
+    void addProductSuccess();
+
+    void deleteProductSuccess();
+
+    void deleteProductFail();
+
+    void listProducts(List<Product> products);
+
+    Sale requireSale();
+
+    void addSaleFail();
+
+    void addSaleSuccess();
+
+    long requireSaleId();
+
+    void deleteSaleSuccess();
+
+    void deleteSaleFail();
+
+    void listSales(List<Sale> sales);
+
+    SubSale requireSubSale();
+
+    void addSubSaleFail();
+
+    void addSubSaleSuccess();
+
+    long requireSubSaleId();
+
+    void deleteSubSaleSuccess();
+
+    void deleteSubSaleFail();
+
+    void listSubSales(List<SubSale> subSales);
+
+    Supplier requireSupplier();
+
+    void addSupplierFail();
+
+    void addSupplierSuccess();
+
+    long requireSupplierId();
+
+    void deleteSupplierSuccess();
+
+    void deleteSupplierFail();
+
+    void listSuppliers(List<Supplier> suppliers);
+
+    Warehouse requireWarehouse();
+
+    void addWarehouseFail();
+
+    void addWarehouseSuccess();
+
+    long requireWarehouseId();
+
+    void deleteWarehouseSuccess();
+
+    void deleteWarehouseFail();
+
+    void listWarehouses(List<Warehouse> warehouses);
 }

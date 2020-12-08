@@ -17,5 +17,7 @@ public interface PersonDao {
 
     boolean delete(long personId);
 
+    Person get(long personId);
+
     List<Person> getAll();
 }

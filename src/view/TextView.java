@@ -57,8 +57,8 @@ public class TextView implements View {
     }
 
     @Override
-    public void greetUser(String username) {
-        System.out.printf("Welcome, %s!\n", username);
+    public void greetUser(String firstName, String lastName) {
+        System.out.printf("Welcome, %s %s!\n", firstName, lastName);
     }
 
     @Override

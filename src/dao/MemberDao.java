@@ -57,5 +57,7 @@ public interface MemberDao {
 
     boolean delete(long memberId);
 
+    Member get(long memberId);
+
     List<Member> getAll();
 }

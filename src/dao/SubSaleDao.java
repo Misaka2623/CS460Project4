@@ -26,5 +26,7 @@ public interface SubSaleDao {
 
     boolean delete(long subSaleId);
 
+    long insert(SubSale subSale);
+
     List<SubSale> getAll();
 }

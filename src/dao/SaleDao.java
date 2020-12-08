@@ -32,5 +32,7 @@ public interface SaleDao {
      */
     double getTotalPriceById(long saleId);
 
+    long insert(Sale sale);
+
     List<Sale> getAll();
 }
