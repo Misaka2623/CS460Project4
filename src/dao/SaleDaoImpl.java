@@ -18,10 +18,10 @@ public class SaleDaoImpl extends BaseDao implements SaleDao {
 
     @Override
     public boolean delete(long saleId){
-        //TODO: delete sale record by saleID and the corresponding sub_sale recording
+        //TODO: check if delete sucess
         //String query = "DELETE FROM sale WHERE sale_id = " + String.valueOf(saleId);
         ResultSet answer = executeSql("DELETE FROM sale WHERE sale_id = (?)", saleId);
-        return 0;
+        return true;
     }
 
     @Override
