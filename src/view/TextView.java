@@ -26,43 +26,43 @@ public class TextView implements View {
     }
 
     @Override
-    public int showIdentityView() {
+    public int selectIdentity() {
         System.out.println("Select your identity");
         return requireOption("quit app", "user", "manager");
     }
 
     @Override
-    public int showSignView() {
+    public int signInOrUp() {
         return requireOption("back", "sign in", "sign up");
     }
 
     @Override
-    public void showSignInSuccessView() {
+    public void signInSuccess() {
         System.out.println("Congratulation! You successfully signed in!");
     }
 
     @Override
-    public void showSignInFailView() {
+    public void signInFail() {
         System.out.println("Sorry, the username and password do not match.");
     }
 
     @Override
-    public void showSignUpSuccessView() {
+    public void signUpSuccess() {
         System.out.println("Congratulation, sign up success!");
     }
 
     @Override
-    public void showDuplicateUsernameView() {
+    public void duplicateUsername() {
         System.out.println("The username you entered is already exist, please use a new username.");
     }
 
     @Override
-    public void showGreet(String username) {
+    public void greetUser(String username) {
         System.out.printf("Welcome, %s!\n", username);
     }
 
     @Override
-    public void showProductList(Map<Product, Integer> products) {
+    public void listProducts(Map<Product, Integer> products) {
         int maxLength = Math.max("product".length(),
                 products.keySet().stream().mapToInt(product -> product.getName().length()).max().orElse(0));
         System.out.printf(String.format("%% %ds\t product id\n", maxLength), "name");
@@ -71,22 +71,22 @@ public class TextView implements View {
     }
 
     @Override
-    public int showShoppingAction() {
+    public int shoppingAction() {
         return requireOption("pay the bill", "show product list", "add product to cart");
     }
 
     @Override
-    public void showAddToCartFailView(long productId, int stock) {
+    public void addToCartFail(long productId, int stock) {
         System.out.printf("The product %d only has %d in stock, please enter a valid amount.\n", productId, stock);
     }
 
     @Override
-    public int showUserActionView() {
+    public int userAction() {
         return requireOption("logout", "shopping", "become a super member");
     }
 
     @Override
-    public void showShoppingResult(double totalPrice, Map<Product, Integer> shoppingList) {
+    public void shoppingResult(double totalPrice, Map<Product, Integer> shoppingList) {
         int nameLength = Math.max("discount".length(),
                 shoppingList.keySet().stream().mapToInt(product -> product.getName().length()).max().orElse(0));
 
@@ -109,12 +109,12 @@ public class TextView implements View {
     }
 
     @Override
-    public void showProductIdNotFoundView(long productId) {
+    public void productIdNotFound(long productId) {
         System.out.printf("The id %d you entered does not refer any product in the list.\n", productId);
     }
 
     @Override
-    public boolean showJoinMembershipView() {
+    public boolean joinMembership() {
         char input = requireString(
                 "To join our membership, you will get membership discount when you buy any product. You will " +
                         "also get 1 point for each dollar you spend. You can redeem $1 store credit using 100 reward " +
@@ -125,7 +125,7 @@ public class TextView implements View {
     }
 
     @Override
-    public void showJoinMembershipSuccessView() {
+    public void joinMembershipSuccess() {
         System.out.println("Congratulation! You are our super member now!");
     }
 
@@ -250,7 +250,7 @@ public class TextView implements View {
     }
 
     @Override
-    public int showManagerMainView() {
+    public int managerMain() {
         return requireOption("back", "manage addresses", "manage categories", "manage employees",
                 "manage groups", "manage members", "manage people", "manage products", "manage sales",
                 "manage sub sales", "manage suppliers", "manage warehouses");

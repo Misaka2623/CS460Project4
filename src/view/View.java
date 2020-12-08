@@ -11,35 +11,35 @@ import java.util.Map;
 public interface View {
     void greet();
 
-    int showIdentityView();
+    int selectIdentity();
 
-    int showSignView();
+    int signInOrUp();
 
-    void showSignInSuccessView();
+    void signInSuccess();
 
-    void showSignInFailView();
+    void signInFail();
 
-    void showSignUpSuccessView();
+    void signUpSuccess();
 
-    void showDuplicateUsernameView();
+    void duplicateUsername();
 
-    void showGreet(String username);
+    void greetUser(String username);
 
-    void showProductList(Map<Product, Integer> products);
+    void listProducts(Map<Product, Integer> products);
 
-    int showShoppingAction();
+    int shoppingAction();
 
-    void showAddToCartFailView(long productId, int stock);
+    void addToCartFail(long productId, int stock);
 
-    int showUserActionView();
+    int userAction();
 
-    void showShoppingResult(double totalPrice, Map<Product, Integer> shoppingList);
+    void shoppingResult(double totalPrice, Map<Product, Integer> shoppingList);
 
-    void showProductIdNotFoundView(long productId);
+    void productIdNotFound(long productId);
 
-    boolean showJoinMembershipView();
+    boolean joinMembership();
 
-    void showJoinMembershipSuccessView();
+    void joinMembershipSuccess();
 
     String requireUsername();
 
@@ -77,7 +77,7 @@ public interface View {
 
     void exit();
 
-    int showManagerMainView();
+    int managerMain();
 
     int manageAddress();
 
@@ -101,7 +101,7 @@ public interface View {
 
     int manageWarehouse();
 
-    void showInsertAddressSuccessView();
+    void addAddressSuccess();
 
     long requireAddressId();
 
@@ -122,4 +122,8 @@ public interface View {
     void deleteCategorySuccess();
 
     void deleteCategoryFail();
+
+    void addAddressFail();
+
+    Address requireAddress();
 }
