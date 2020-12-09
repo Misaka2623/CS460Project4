@@ -36,6 +36,8 @@ public interface View {
 
     void signInFail();
 
+    void signUpFail();
+
     Member requireMember();
 
     Person requirePerson();

@@ -171,19 +171,23 @@ public class Main {
         view.newPage();
 
         Member member = view.requireMember();
-        Person person = view.requirePerson();
-        Address address = view.requireAddress();
+        if (memberDao.getMemberIdByUsername(member.getUsername()) == 0) {
+            view.signUpFail();
+        } else {
+            Person person = view.requirePerson();
+            Address address = view.requireAddress();
 
-        long addressId = addressDao.insert(address);
-        person.setAddressId(addressId);
+            long addressId = addressDao.insert(address);
+            person.setAddressId(addressId);
 
-        long personId = personDao.insert(person);
-        member.setPersonId(personId);
+            long personId = personDao.insert(person);
+            member.setPersonId(personId);
 
-        memberId = memberDao.insert(member);
+            memberId = memberDao.insert(member);
 
-        view.signUpSuccess();
-        userMain();
+            view.signUpSuccess();
+            userMain();
+        }
     }
 
     private static void manageAddress() {
@@ -497,6 +501,14 @@ public class Main {
     private static void addEmployee() {
         view.newPage();
         Employee employee = view.requireEmployee();
+        Person person = view.requirePerson();
+        Group group = view.requireGroup();
+
+        long groupId = groupDao.insert(group);
+        employee.setGroupId(groupId);
+        long personId = personDao.insert(person);
+        employee.setPersonId(personId);
+
         long employeeId = employeeDao.insert(employee);
         if (employeeId == 0) {
             view.addEmployeeFail();
@@ -609,6 +621,9 @@ public class Main {
     private static void addProduct() {
         view.newPage();
         Product product = view.requireProduct();
+        Category category = view.requireCategory();
+        long categoryId = categoryDao.insert(category);
+        product.setCategoryId(categoryId);
         long productId = productDao.insert(product);
         if (productId == 0) {
             view.addProductFail();
@@ -693,6 +708,12 @@ public class Main {
     private static void addSupplier() {
         view.newPage();
         Supplier supplier = view.requireSupplier();
+        Address address = view.requireAddress();
+        long addressId = addressDao.insert(address);
+        supplier.setAddressId(addressId);
+        Person person = view.requirePerson();
+        long personId = personDao.insert(person);
+        supplier.setContactPerson(personId);
         long supplierId = supplierDao.insert(supplier);
         if (supplierId == 0) {
             view.addSupplierFail();

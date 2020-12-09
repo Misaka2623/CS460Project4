@@ -1,12 +1,24 @@
 package view;
 
+import bean.Address;
+import bean.Category;
+import bean.Employee;
+import bean.Group;
+import bean.Member;
+import bean.Person;
 import bean.Product;
+import bean.Sale;
+import bean.SubSale;
+import bean.Supplier;
+import bean.Warehouse;
 import util.Gender;
 import util.State;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -21,14 +33,24 @@ public class TextView implements View {
     }
 
     @Override
+    public void newPage() {
+        System.out.println("========================================");
+    }
+
+    @Override
     public void greet() {
-        System.out.println("Welcome to CS460 shopping app.");
+        System.out.println("Welcome to CS460 shopping app!");
     }
 
     @Override
     public int selectIdentity() {
-        System.out.println("Select your identity");
-        return requireOption("quit app", "user", "manager");
+        System.out.println("Who are you?");
+        return requireOption("quit", "user", "manager");
+    }
+
+    @Override
+    public void exit() {
+        System.out.println("Thank you for using CS460 shopping app. Have a good day!");
     }
 
     @Override
@@ -37,80 +59,552 @@ public class TextView implements View {
     }
 
     @Override
+    public int managerMain() {
+        return requireOption("back", "manage addresses", "manage categories", "manage employees",
+                "manage groups", "manage members", "manage people", "manage products", "manage sales",
+                "manage sub sales", "manage suppliers", "manage warehouses");
+    }
+
+    @Override
+    public String requireUsername() {
+        return requireString("username");
+    }
+
+    @Override
+    public String requirePassword() {
+        return requireString("password");
+    }
+
+    @Override
     public void signInSuccess() {
-        System.out.println("Congratulation! You successfully signed in!");
+        success("sign in");
     }
 
     @Override
     public void signInFail() {
-        System.out.println("Sorry, the username and password do not match.");
+        fail("sign in");
+    }
+
+    @Override
+    public void signUpFail() {
+        fail("sign up");
+    }
+
+    @Override
+    public Member requireMember() {
+        Member member = new Member();
+        member.setUsername(requireUsername());
+        member.setPassword(requirePassword());
+        member.setReward(0);
+        member.setSuperMember(0);
+        return member;
+    }
+
+    @Override
+    public Person requirePerson() {
+        Person person = new Person();
+        person.setFirstName(requireFirstName());
+        person.setLastName(requireLastName());
+        person.setGender(requireGender());
+        person.setBirthday(requireBirthday());
+        person.setPhone(requirePhone());
+        return person;
+    }
+
+    @Override
+    public Address requireAddress() {
+        Address address = new Address();
+        address.setLine1(requireLine1());
+        address.setLine2(requireLine2());
+        address.setLine3(requireLine3());
+        address.setCity(requireCity());
+        address.setState(requireState());
+        address.setPostalCode(requirePostalCode());
+        return address;
     }
 
     @Override
     public void signUpSuccess() {
-        System.out.println("Congratulation, sign up success!");
+        success("sign up");
     }
 
     @Override
-    public void duplicateUsername() {
-        System.out.println("The username you entered is already exist, please use a new username.");
+    public int manageAddress() {
+        return requireOption("back", "add address", "delete address", "list all addresses");
+    }
+
+    @Override
+    public int manageCategory() {
+        return requireOption("back", "add category", "delete category", "list all categories");
+    }
+
+    @Override
+    public int manageEmployee() {
+        return requireOption("back", "add employee", "delete employee", "list all employees");
+    }
+
+    @Override
+    public int manageGroup() {
+        return requireOption("back", "add group", "delete group", "list all groups");
+    }
+
+    @Override
+    public int manageMember() {
+        return requireOption("back", "add member", "delete member", "list all members");
+    }
+
+    @Override
+    public int managePerson() {
+        return requireOption("back", "add person", "delete person", "list all people");
+    }
+
+    @Override
+    public int manageProduct() {
+        return requireOption("back", "add product", "delete product", "list all products");
+    }
+
+    @Override
+    public int manageSale() {
+        return requireOption("back", "add sale", "delete sale", "list all sales");
+    }
+
+    @Override
+    public int manageSubSale() {
+        return requireOption("back", "add sub sale", "delete sub sale", "list all sub sales");
+    }
+
+    @Override
+    public int manageSupplier() {
+        return requireOption("back", "add supplier", "delete supplier", "list all suppliers");
+    }
+
+    @Override
+    public int manageWarehouse() {
+        return requireOption("back", "add warehouse", "delete warehouse", "list all warehouses");
     }
 
     @Override
     public void greetUser(String firstName, String lastName) {
-        System.out.printf("Welcome, %s %s!\n", firstName, lastName);
-    }
-
-    @Override
-    public void listProducts(Map<Product, Integer> products) {
-        int maxLength = Math.max("product".length(),
-                products.keySet().stream().mapToInt(product -> product.getName().length()).max().orElse(0));
-        System.out.printf(String.format("%% %ds\t product id\n", maxLength), "name");
-        products.forEach((key, value) ->
-                System.out.printf(String.format("%% %ds\t %%d\n", maxLength), key.getName(), value));
-    }
-
-    @Override
-    public int shoppingAction() {
-        return requireOption("pay the bill", "show product list", "add product to cart");
-    }
-
-    @Override
-    public void addToCartFail(long productId, int stock) {
-        System.out.printf("The product %d only has %d in stock, please enter a valid amount.\n", productId, stock);
+        System.out.printf("Hello, %s %s!\n", firstName, lastName);
     }
 
     @Override
     public int userAction() {
-        return requireOption("logout", "shopping", "become a super member");
+        return requireOption("logout", "shopping", "join membership");
+    }
+
+    @Override
+    public void addAddressFail() {
+        fail("add address");
+    }
+
+    @Override
+    public void addAddressSuccess() {
+        success("add address");
+    }
+
+    @Override
+    public long requireAddressId() {
+        return requireId("address");
+    }
+
+    @Override
+    public void deleteAddressSuccess() {
+        success("delete address");
+    }
+
+    @Override
+    public void deleteAddressFail() {
+        fail("delete address");
+    }
+
+    @Override
+    public void listAddresses(List<Address> addresses) {
+        addresses.forEach(System.out::println);
+    }
+
+    @Override
+    public Category requireCategory() {
+        Category category = new Category();
+        category.setName(requireCategoryName());
+        return category;
+    }
+
+    @Override
+    public void addCategoryFail() {
+        fail("add category");
+    }
+
+    @Override
+    public void addCategorySuccess() {
+        success("add category");
+    }
+
+    @Override
+    public long requireCategoryId() {
+        return requireId("category");
+    }
+
+    @Override
+    public void deleteCategorySuccess() {
+        success("delete category");
+    }
+
+    @Override
+    public void deleteCategoryFail() {
+        fail("delete category");
+    }
+
+    @Override
+    public void listCategories(List<Category> categories) {
+        categories.forEach(System.out::println);
+    }
+
+    @Override
+    public Employee requireEmployee() {
+        Employee employee = new Employee();
+        employee.setSalary(requireSalary());
+        return employee;
+    }
+
+    @Override
+    public void addEmployeeFail() {
+        fail("add employee");
+    }
+
+    @Override
+    public void addEmployeeSuccess() {
+        success("add employee");
+    }
+
+    @Override
+    public long requireEmployeeId() {
+        return requireId("employee");
+    }
+
+    @Override
+    public void deleteEmployeeSuccess() {
+        success("delete employee");
+    }
+
+    @Override
+    public void deleteEmployeeFail() {
+        fail("delete employee");
+    }
+
+    @Override
+    public void listEmployees(List<Employee> employees) {
+        employees.forEach(System.out::println);
+    }
+
+    @Override
+    public Group requireGroup() {
+        Group group = new Group();
+        group.setName(requireGroupName());
+        return group;
+    }
+
+    @Override
+    public void addGroupFail() {
+        fail("add group");
+    }
+
+    @Override
+    public void addGroupSuccess() {
+        success("add group");
+    }
+
+    @Override
+    public long requireGroupId() {
+        return requireId("group");
+    }
+
+    @Override
+    public void deleteGroupSuccess() {
+        success("delete group");
+    }
+
+    @Override
+    public void deleteGroupFail() {
+        fail("delete group");
+    }
+
+    @Override
+    public void listGroups(List<Group> groups) {
+        groups.forEach(System.out::println);
+    }
+
+    @Override
+    public void addMemberFail() {
+        fail("add member");
+    }
+
+    @Override
+    public void addMemberSuccess() {
+        success("add member");
+    }
+
+    @Override
+    public long requireMemberId() {
+        return requireId("member");
+    }
+
+    @Override
+    public void deleteMemberSuccess() {
+        success("delete member");
+    }
+
+    @Override
+    public void deleteMemberFail() {
+        fail("delete member");
+    }
+
+    @Override
+    public void listMembers(List<Member> members) {
+        members.forEach(System.out::println);
+    }
+
+    @Override
+    public void addPersonFail() {
+        fail("add person");
+    }
+
+    @Override
+    public void addPersonSuccess() {
+        success("add person");
+    }
+
+    @Override
+    public long requirePersonId() {
+        return requireId("person");
+    }
+
+    @Override
+    public void deletePersonSuccess() {
+        success("delete person");
+    }
+
+    @Override
+    public void deletePersonFail() {
+        fail("delete person");
+    }
+
+    @Override
+    public void listPeople(List<Person> people) {
+        people.forEach(System.out::println);
+    }
+
+    @Override
+    public Product requireProduct() {
+        Product product = new Product();
+        product.setName(requireProductName());
+        product.setRetailPrice(requireRetailPrice());
+        product.setMembershipDiscount(requireMembershipDiscount());
+        return product;
+    }
+
+    @Override
+    public void addProductFail() {
+        fail("add product");
+    }
+
+    @Override
+    public void addProductSuccess() {
+        success("add product");
+    }
+
+    @Override
+    public long requireProductId() {
+        return requireId("product");
+    }
+
+    @Override
+    public void deleteProductSuccess() {
+        success("delete product");
+    }
+
+    @Override
+    public void deleteProductFail() {
+        fail("delete product");
+    }
+
+    @Override
+    public void listProducts(List<Product> products) {
+        products.forEach(System.out::println);
+    }
+
+    @Override
+    public Sale requireSale() {
+        Sale sale = new Sale();
+        sale.setDate(Date.valueOf(LocalDate.now()));
+        sale.setPaymentMethod(requirePaymentMethod());
+        sale.setTotalPrice(0);
+        sale.setMemberId(requireMemberId());
+        return sale;
+    }
+
+    @Override
+    public void addSaleFail() {
+        fail("add sale");
+    }
+
+    @Override
+    public void addSaleSuccess() {
+        success("add sale");
+    }
+
+    @Override
+    public long requireSaleId() {
+        return requireId("sale");
+    }
+
+    @Override
+    public void deleteSaleSuccess() {
+        success("delete sale");
+    }
+
+    @Override
+    public void deleteSaleFail() {
+        fail("delete sale");
+    }
+
+    @Override
+    public void listSales(List<Sale> sales) {
+        sales.forEach(System.out::println);
+    }
+
+    @Override
+    public SubSale requireSubSale() {
+        SubSale subSale = new SubSale();
+        subSale.setProductId(requireProductId());
+        subSale.setSaleId(requireSaleId());
+        subSale.setPrice(requirePrice());
+        subSale.setAmount(requireProductAmount());
+        return subSale;
+    }
+
+    @Override
+    public void addSubSaleFail() {
+        fail("add sub sale");
+    }
+
+    @Override
+    public void addSubSaleSuccess() {
+        success("add sub sale");
+    }
+
+    @Override
+    public long requireSubSaleId() {
+        return requireId("sub_sale");
+    }
+
+    @Override
+    public void deleteSubSaleSuccess() {
+        success("delete sub sale");
+    }
+
+    @Override
+    public void deleteSubSaleFail() {
+        fail("delete sub sale");
+    }
+
+    @Override
+    public void listSubSales(List<SubSale> subSales) {
+        subSales.forEach(System.out::println);
+    }
+
+    @Override
+    public Supplier requireSupplier() {
+        Supplier supplier = new Supplier();
+        supplier.setName(requireSupplierName());
+        return supplier;
+    }
+
+    @Override
+    public void addSupplierFail() {
+        fail("add supplier");
+    }
+
+    @Override
+    public void addSupplierSuccess() {
+        success("add supplier");
+    }
+
+    @Override
+    public long requireSupplierId() {
+        return requireId("supplier");
+    }
+
+    @Override
+    public void deleteSupplierSuccess() {
+        success("delete supplier");
+    }
+
+    @Override
+    public void deleteSupplierFail() {
+        fail("supplier fail");
+    }
+
+    @Override
+    public void listSuppliers(List<Supplier> suppliers) {
+        suppliers.forEach(System.out::println);
+    }
+
+    @Override
+    public Warehouse requireWarehouse() {
+        Warehouse warehouse = new Warehouse();
+        warehouse.setSupplierId(requireSupplierId());
+        warehouse.setProductId(requireProductId());
+        warehouse.setIncomingDate(requireDate("incoming date"));
+        warehouse.setPurchasePrice(requirePurchasePrice());
+        warehouse.setAmount(requireProductAmount());
+        return warehouse;
+    }
+
+    @Override
+    public void addWarehouseFail() {
+        fail("add warehouse");
+    }
+
+    @Override
+    public void addWarehouseSuccess() {
+        success("add warehouse");
+    }
+
+    @Override
+    public long requireWarehouseId() {
+        return requireId("warehouse");
+    }
+
+    @Override
+    public void deleteWarehouseSuccess() {
+        success("delete warehouse");
+    }
+
+    @Override
+    public void deleteWarehouseFail() {
+        fail("delete warehouse");
+    }
+
+    @Override
+    public void listWarehouses(List<Warehouse> warehouses) {
+        warehouses.forEach(System.out::println);
+    }
+
+    @Override
+    public String requirePaymentMethod() {
+        return requireString("payment method");
     }
 
     @Override
     public void shoppingResult(double totalPrice, Map<Product, Integer> shoppingList) {
-        int nameLength = Math.max("discount".length(),
-                shoppingList.keySet().stream().mapToInt(product -> product.getName().length()).max().orElse(0));
-
-        int amountLength = Math.max("amount".length(),
-                shoppingList.values().stream().mapToInt(i -> String.valueOf(i).length()).max().orElse(0));
-
-        System.out.printf(
-                String.format("%% %ds %% %ds\t %%s\n", nameLength, amountLength), "product", "amount", "price");
-        shoppingList.forEach((key, value) ->
-                System.out.printf(String.format("%% %ds %% %dd\t %%.2f\n", nameLength, amountLength),
-                        key.getName(), value, key.getRetailPrice() * value)
-        );
-        System.out.println();
-
-        double price =
+        System.out.printf("%s\t%s\t%s\n", "name", "amount", "price");
+        shoppingList.forEach((product, amount) ->
+                System.out.printf("%s\t%d\t%.2f\n", product.getName(), amount, product.getRetailPrice() * amount));
+        double originalPrice =
                 shoppingList.entrySet().stream().mapToDouble(kv -> kv.getKey().getRetailPrice() * kv.getValue()).sum();
-        double discount = totalPrice - price;
-        System.out.printf(String.format("%% %ds %% %ds\t-%%.2f\n", nameLength, amountLength), "discount", "", discount);
-        System.out.printf(String.format("%% %ds %% %ds\t %%.2f\n", nameLength, amountLength), "total", "", totalPrice);
-    }
-
-    @Override
-    public void productIdNotFound(long productId) {
-        System.out.printf("The id %d you entered does not refer any product in the list.\n", productId);
+        System.out.printf("discount\t%.2f\n", totalPrice - originalPrice);
+        System.out.printf("total price\t%.2f\n", totalPrice);
     }
 
     @Override
@@ -126,189 +620,33 @@ public class TextView implements View {
 
     @Override
     public void joinMembershipSuccess() {
-        System.out.println("Congratulation! You are our super member now!");
+        success("join membership");
     }
 
     @Override
-    public String requireUsername() {
-        return requireString("Please enter the username");
+    public int shoppingAction() {
+        return requireOption("pay the bill", "show product list", "add product to cart");
     }
 
     @Override
-    public String requirePassword() {
-        return requireString("Please enter the password");
+    public void listProducts(Map<Product, Integer> products) {
+        System.out.println("name\tproduct id");
+        products.forEach((key, value) -> System.out.printf("%s\t%d\n", key.getName(), value));
     }
 
     @Override
-    public String requireFirstName() {
-        return requireString("Please enter the first name", "Please enter a valid name",
-                Pattern.compile("^[a-zA-Z. ]*$"));
-    }
-
-    @Override
-    public String requireLastName() {
-        return requireString("Please enter the last name", "Please enter a valid name",
-                Pattern.compile("^[a-zA-Z. ]*$"));
-    }
-
-    @Override
-    public Gender requireGender() {
-        StringBuilder instruction = new StringBuilder();
-        instruction.append("Please enter the gender (");
-        for (Gender gender : Gender.values()) {
-            instruction.append(gender.name().toLowerCase()).append(", ");
-        }
-        instruction.delete(instruction.length() - 2, instruction.length()).append(")");
-        String input = requireString(instruction.toString());
-        try {
-            return Gender.valueOf(input.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Please enter a correct gender");
-            return requireGender();
-        }
-    }
-
-    @Override
-    public Date requireBirthday() {
-        return requireDate("Please enter the birthday, press enter if you do not want to tell");
-    }
-
-    @Override
-    public String requirePhoneNumber() {
-        return requireString("Please enter the phone number",
-                "Please enter a correct phone number (only numbers)", Pattern.compile("^\\d{10,15}$"));
-    }
-
-    @Override
-    public String requireLine1() {
-        return requireString("Please enter the first line of the address");
-    }
-
-    @Override
-    public String requireLine2() {
-        String input = requireString(
-                "Please enter the second line of the address, press enter if there is no second line");
-        return "".equals(input) ? null : input;
-    }
-
-    @Override
-    public String requireLine3() {
-        String input = requireString(
-                "Please enter the last line of the address, press enter if there is no third line");
-        return "".equals(input) ? null : input;
-    }
-
-    @Override
-    public String requireCity() {
-        return requireString("Please enter the city of the address");
-    }
-
-    @Override
-    public String requireState() {
-        String input = requireString("Please enter the state of the address",
-                "Please enter a correct state", Pattern.compile("^[a-zA-Z() ]*$"));
-        if (Arrays.binarySearch(State.STATES, input) != -1) {
-            return input;
-        } else {
-            System.out.println("Please enter a correct state");
-            return requireState();
-        }
-    }
-
-    @Override
-    public String requirePostalCode() {
-        return requireString("Please enter the postal code",
-                "Please enter a correct postal code (only numbers)",
-                Pattern.compile("^\\d{5}([ \\-]\\d{4})?$"));
-    }
-
-    @Override
-    public long requireProductId() {
-        return requireLong("Please enter the id of the item that you want to buy",
-                "Please enter a correct id", 1);
+    public void productIdNotFound(long productId) {
+        System.out.printf("product id %d not found\n", productId);
     }
 
     @Override
     public int requireProductAmount() {
-        return requireInteger("How many this items you want to buy",
-                "Please enter a positive integer", 1);
+        return requireInteger("product amount", "please enter a positive integer", 1);
     }
 
     @Override
-    public String requirePaymentMethod() {
-        return requireString("Please enter the payment method");
-    }
-
-    @Override
-    public void newPage() {
-        System.out.println("========================================");
-    }
-
-    @Override
-    public void exit() {
-        System.out.println("Thank you for using CS460 shopping app. Have a good day!");
-    }
-
-    @Override
-    public int managerMain() {
-        return requireOption("back", "manage addresses", "manage categories", "manage employees",
-                "manage groups", "manage members", "manage people", "manage products", "manage sales",
-                "manage sub sales", "manage suppliers", "manage warehouses");
-    }
-
-    @Override
-    public int manageAddress() {
-        return requireOption("back", "add record", "delete record", "list all records");
-    }
-
-    @Override
-    public int manageCategory() {
-        return requireOption("back", "add record", "delete record", "list all records");
-    }
-
-    @Override
-    public int manageEmployee() {
-        return requireOption("back", "add record", "delete record", "list all records");
-    }
-
-    @Override
-    public int manageGroup() {
-        return requireOption("back", "add record", "delete record", "list all records");
-    }
-
-    @Override
-    public int manageMember() {
-        return requireOption("back", "add record", "delete record", "list all records");
-    }
-
-    @Override
-    public int managePerson() {
-        return requireOption("back", "add record", "delete record", "list all records");
-    }
-
-    @Override
-    public int manageProduct() {
-        return requireOption("back", "add record", "delete record", "list all records");
-    }
-
-    @Override
-    public int manageSale() {
-        return requireOption("back", "add record", "delete record", "list all records");
-    }
-
-    @Override
-    public int manageSubSale() {
-        return requireOption("back", "add record", "delete record", "list all records");
-    }
-
-    @Override
-    public int manageSupplier() {
-        return requireOption("back", "add record", "delete record", "list all records");
-    }
-
-    @Override
-    public int manageWarehouse() {
-        return requireOption("back", "add record", "delete record", "list all records");
+    public void addToCartFail(long productId, int stock) {
+        fail("add to cart");
     }
 
     private int requireOption(String quit, String... options) {
@@ -320,77 +658,164 @@ public class TextView implements View {
         return requireInteger(instruction, errorMessage, 0, options.length);
     }
 
-    private int requireInteger(String instruction, String errorMessage, int minValue) {
-        return requireInteger(instruction, errorMessage, minValue, Integer.MAX_VALUE);
+    private Integer requireInteger(String instruction, String errorMessage) {
+        return requireInteger(instruction, errorMessage, null, null, null);
     }
 
-    private int requireInteger(String instruction, String errorMessage, int minValue, int maxValue) {
+    private Integer requireInteger(String instruction, String errorMessage, Integer minValue) {
+        return requireInteger(instruction, errorMessage, minValue, null, null);
+    }
+
+    private Integer requireInteger(String instruction, String errorMessage, Integer minValue, Integer maxValue) {
         return requireInteger(instruction, errorMessage, minValue, maxValue, null);
     }
 
-    private int requireInteger(String instruction, String errorMessage, int minValue, int maxValue, Integer length) {
+    private Integer requireInteger(String instruction, String errorMessage, Integer minValue, Integer maxValue,
+                                   Integer length) {
         System.out.printf("%s: ", instruction);
 
         String input = scanner.nextLine();
+        if ("".equals(input)) {
+            return null;
+        }
         try {
             if (length != null && length != input.length()) {
                 throw new InputMismatchException();
             }
 
-            int number = Integer.parseInt(input);
-            if (number < minValue || number > maxValue) {
+            int inputInt = Integer.parseInt(input);
+            if ((minValue != null && minValue > inputInt) || (maxValue != null && maxValue < inputInt)) {
                 throw new InputMismatchException();
             }
 
-            return number;
+            return inputInt;
         } catch (NumberFormatException | InputMismatchException e) {
             System.out.println(errorMessage);
             return requireInteger(instruction, errorMessage, minValue, maxValue, length);
         }
     }
 
-    private long requireLong(String instruction, String errorMessage, long minValue) {
-        return requireLong(instruction, errorMessage, minValue, Long.MAX_VALUE);
+    private Long requireLong(String instruction, String errorMessage) {
+        return requireLong(instruction, errorMessage, null, null, null);
     }
 
-    private long requireLong(String instruction, String errorMessage, long minValue, long maxValue) {
+    private Long requireLong(String instruction, String errorMessage, Long minValue) {
+        return requireLong(instruction, errorMessage, minValue, null, null);
+    }
+
+    private Long requireLong(String instruction, String errorMessage, Long minValue, Long maxValue) {
         return requireLong(instruction, errorMessage, minValue, maxValue, null);
     }
 
-    private long requireLong(String instruction, String errorMessage, long minValue, long maxValue, Integer length) {
+    private Long requireLong(String instruction, String errorMessage, Long minValue, Long maxValue, Integer length) {
         System.out.printf("%s: ", instruction);
 
         String input = scanner.nextLine();
+        if ("".equals(input)) {
+            return null;
+        }
         try {
             if (length != null && length != input.length()) {
                 throw new InputMismatchException();
             }
 
-            long number = Long.parseLong(input);
-            if (number < minValue || number > maxValue) {
+            long inputLong = Long.parseLong(input);
+            if ((minValue != null && minValue > inputLong) || (maxValue != null && maxValue < inputLong)) {
                 throw new InputMismatchException();
             }
 
-            return number;
+            return inputLong;
         } catch (NumberFormatException | InputMismatchException e) {
             System.out.println(errorMessage);
             return requireLong(instruction, errorMessage, minValue, maxValue, length);
         }
     }
 
-    private String requireString(String instruction) {
+    private Double requireDouble(String instruction, String errorMessage) {
+        return requireDouble(instruction, errorMessage, null, null);
+    }
+
+    private Double requireDouble(String instruction, String errorMessage, Double minValue) {
+        return requireDouble(instruction, errorMessage, minValue, null);
+    }
+
+    private Double requireDouble(String instruction, String errorMessage, Double minValue, Double maxValue) {
         System.out.printf("%s: ", instruction);
-        return scanner.nextLine();
+
+        String input = scanner.nextLine();
+        if ("".equals(input)) {
+            return null;
+        }
+        try {
+            double inputDouble = Double.parseDouble(input);
+            if ((minValue != null && minValue > inputDouble) || (maxValue != null && maxValue < inputDouble)) {
+                throw new InputMismatchException();
+            }
+
+            return inputDouble;
+        } catch (NumberFormatException | InputMismatchException e) {
+            System.out.println(errorMessage);
+            return requireDouble(instruction, errorMessage, minValue, maxValue);
+        }
+    }
+
+    private String requireString(String instruction) {
+        return requireString(instruction, null, null);
     }
 
     private String requireString(String instruction, String errorMessage, Pattern regex) {
-        String input = requireString(instruction);
-        if (regex.matcher(input).find()) {
+        System.out.printf("%s: ", instruction);
+        String input = scanner.nextLine();
+        if (regex == null || regex.matcher(input).find()) {
             return input;
         } else {
             System.out.println(errorMessage);
             return requireString(instruction, errorMessage, regex);
         }
+    }
+
+    private void success(String action) {
+        System.out.printf("%s success\n", action);
+    }
+
+    private void fail(String action) {
+        System.out.printf("%s fail\n", action);
+    }
+
+    private String requireFirstName() {
+        return requireString("first name");
+    }
+
+    private String requireLastName() {
+        return requireString("last name");
+    }
+
+    private Gender requireGender() {
+        StringBuilder instruction = new StringBuilder();
+        instruction.append("gender (");
+        for (Gender gender : Gender.values()) {
+            instruction.append(gender.name().toLowerCase()).append(", ");
+        }
+        instruction.delete(instruction.length() - 2, instruction.length()).append(")");
+        String input = requireString(instruction.toString());
+        if (input == null || "".equals(input)) {
+            return Gender.UNKNOWN;
+        }
+        try {
+            return Gender.valueOf(input.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Please enter a correct gender");
+            return requireGender();
+        }
+    }
+
+    private Date requireBirthday() {
+        return requireDate("birthday");
+    }
+
+    private String requirePhone() {
+        return requireString("phone", "Please enter a correct phone number (only numbers)",
+                Pattern.compile("^\\d{10,15}$"));
     }
 
     private Date requireDate(String instruction) {
@@ -405,5 +830,81 @@ public class TextView implements View {
             System.out.println("Please enter a correct date in yyyy-[m]m-[d]d format");
             return requireDate(instruction);
         }
+    }
+
+    private String requireLine1() {
+        return requireString("line1");
+    }
+
+    private String requireLine2() {
+        return requireString("line2");
+    }
+
+    private String requireLine3() {
+        return requireString("line3");
+    }
+
+    private String requireCity() {
+        return requireString("city");
+    }
+
+    private String requireState() {
+        String input = requireString("Please enter the state of the address",
+                "Please enter a correct state", Pattern.compile("^[a-zA-Z() ]*$"));
+        int index = Arrays.binarySearch(State.STATES, input);
+        if (index != -1) {
+            if (index % 2 == 0) {
+                index += 1;
+            }
+            return State.STATES[index];
+        } else {
+            System.out.println("Please enter a correct state");
+            return requireState();
+        }
+    }
+
+    private String requirePostalCode() {
+        return requireString("postal code", "Please enter a correct postal code (only numbers)",
+                Pattern.compile("^\\d{5}([ \\-]\\d{4})?$"));
+    }
+
+    private long requireId(String name) {
+        return requireLong(String.format("%s id", name), "please enter a correct id", 1L);
+    }
+
+    private String requireCategoryName() {
+        return requireString("category name");
+    }
+
+    private double requireSalary() {
+        return requireDouble("salary", "please enter a correct salary", .0);
+    }
+
+    private String requireGroupName() {
+        return requireString("group name");
+    }
+
+    private String requireProductName() {
+        return requireString("product name");
+    }
+
+    private double requireRetailPrice() {
+        return requireDouble("retail price", "please enter a correct price", .0);
+    }
+
+    private double requireMembershipDiscount() {
+        return requireDouble("membership discount", "please enter a correct discount", .0);
+    }
+
+    private double requirePrice() {
+        return requireDouble("price", "please enter a correct price", .0);
+    }
+
+    private String requireSupplierName() {
+        return requireString("supplier name");
+    }
+
+    private double requirePurchasePrice() {
+        return requireDouble("price", "please enter a correct price", .0);
     }
 }
