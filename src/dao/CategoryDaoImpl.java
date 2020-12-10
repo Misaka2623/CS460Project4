@@ -14,7 +14,9 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
 
     public boolean delete(long categoryId){
         //TODO: check if delete sucess
-        ResultSet answer = executeSql("DELETE FROM category WHERE category_id = (?)", categoryId);
+        int answer = executeUpdate("DELETE FROM category WHERE category_id = (?)", categoryId);
+        if(answer == 0)
+            return false;
         return true;
     }
 

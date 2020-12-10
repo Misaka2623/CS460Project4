@@ -16,7 +16,7 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
 
     public boolean delete(long employeeId){
          //TODO: check if delete sucess
-        ResultSet answer = executeUpdate("DELETE FROM employee WHERE employee_id = (?)", employeeId);
+        int answer = executeUpdate("DELETE FROM employee WHERE employee_id = (?)", employeeId);
         if(answer == 0)
             return false;
         return true;
