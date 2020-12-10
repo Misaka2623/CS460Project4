@@ -4,7 +4,8 @@ import java.sql.ResultSet;
 import java.util.Map;
 
 public class SaleDaoImpl extends BaseDao implements SaleDao {
-    @Override
+    
+	@Override
     public long insert(long memberId, String paymentMethod, Map<Long, Integer> cart){
         //TODO: insert sale table and sub_sale table
         long saleID = generateId();
