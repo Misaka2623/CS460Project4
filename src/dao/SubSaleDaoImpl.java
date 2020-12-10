@@ -1,6 +1,7 @@
 package dao;
 
 public class SubSaleDaoImpl extends BaseDao implements SubSaleDao {
+	
 	@Override
 	public long insert(long parentId, long productId, int amount) {
 		//TODO: insert sub_sale table
