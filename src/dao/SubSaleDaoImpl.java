@@ -25,7 +25,7 @@ public class SubSaleDaoImpl extends BaseDao implements SubSaleDao {
         return total;
 	}
 	
-	public boolean boolean delete(long subSaleId) {
+	public boolean delete(long subSaleId) {
 		//TODO: check if delete sucess
 		int answer = executeUpdate("DELETE FROM sub_sale WHERE sub_sale_id = (?)", subSaleId);
         if(answer == 0)

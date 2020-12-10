@@ -21,7 +21,7 @@ public class SupplierDaoImpl extends BaseDao implements SupplierDao {
         {
             long supplier_id = answer.getLong();
             String name = answer.getString();
-            long address_id = answer.getDouble();
+            long address_id = answer.getLong();
             long contact_person = answer.getLong();
             Supplier each = Supplier(supplier_id, name, address_id, contact_person);
             total.add(each);
