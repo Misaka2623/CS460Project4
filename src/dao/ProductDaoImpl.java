@@ -8,7 +8,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
     @Override
     public long insert(Product product){
         product.setProductId(generateId());
-        if( product.getName() == null || product.getRetailPrice()  == null || product.getCategoryId() == null || product.getMembershipDiscount() == null)
+        if( product.getName() == null)
             return 0;
 
         ResultSet answer = executeSql("INSERT INTO \"product\" VALUES (?,?,?,?,?)",
@@ -27,7 +27,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 
     @Override
     public int calculateProductAmount(long productId){
-        ResultSet answer = executeSql("SELECT count(*) FROM \"product\"  WHERE product_id = (?)", productId)
+        ResultSet answer = executeSql("SELECT count(*) FROM \"product\"  WHERE product_id = (?)", productId);
         answer.last();
         return answer.getRow();
     }
