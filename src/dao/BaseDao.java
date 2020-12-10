@@ -72,6 +72,8 @@ public abstract class BaseDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        // if didn't execute the code above means fail
+        return -1;
     }
 
     /**
