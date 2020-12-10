@@ -11,6 +11,7 @@ import bean.Sale;
 import bean.SubSale;
 import bean.Supplier;
 import bean.Warehouse;
+import util.Encryption;
 import util.Gender;
 import util.State;
 
@@ -94,7 +95,7 @@ public class TextView implements View {
     public Member requireMember() {
         Member member = new Member();
         member.setUsername(requireUsername());
-        member.setPassword(requirePassword());
+        member.setPassword(Encryption.encrypt(requirePassword()));
         member.setReward(0);
         member.setSuperMember(0);
         return member;
