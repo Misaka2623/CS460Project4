@@ -20,7 +20,7 @@ public class GroupDaoImpl extends BaseDao implements GroupDao {
     }
 
     public List<Group> getAll(){
-        List<employee> total = new List<Employee>();
+        List<Group> total = new List<Group>();
         Result answer = executeSql("SELECT * from \"group\" ");
         while(answer.next())
         {
