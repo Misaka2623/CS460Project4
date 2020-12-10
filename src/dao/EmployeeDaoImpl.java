@@ -28,7 +28,12 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
         Result answer = executeSql("SELECT employee_id from employee")
         while(answer.next())
         {
-            total.add(answer.getLong());
+            long employee_id = answer.getLong();
+            long person_id = answer.getLong();
+            double salary = answer.getDouble();
+            long group_id = answer.getLong();
+            Category each = Category(employee_id, person_id, salary, group_id);
+            total.add(each);
         }
         return total;
     }
