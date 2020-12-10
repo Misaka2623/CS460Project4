@@ -37,10 +37,10 @@ public class SubSaleDaoImpl extends BaseDao implements SubSaleDao {
 		 return subSale.setSubSaleId();
 	}
 	
-	public List<Category> getAll(){
+	public List<SubSale> getAll(){
 		//TODO: implement getAll
         List<SubSale> all = new List<subSale>();
-        Result answer = executeSql("SELECT * from subSale");
+        Result answer = executeSql("SELECT * from \"subSale\" ");
         while(answer.next())
         {
             long sub_sale_id = answer.getLong();
@@ -48,7 +48,7 @@ public class SubSaleDaoImpl extends BaseDao implements SubSaleDao {
             long sale_id = answer.getDouble();
             long price = answer.getLong();
             double amount = answer.getLong();
-            Category each = Category(sub_sale_id, product_id, sale_id, price, amount);
+            SubSale each = SubSale(sub_sale_id, product_id, sale_id, price, amount);
             total.add(each);
         }
         return total;
