@@ -649,6 +649,14 @@ public class TextView implements View {
         fail("add to cart");
     }
 
+    /**
+     * require the user input an option.
+     *
+     * @param quit    the option to quit this page.
+     * @param options the options.
+     * @return the integer that refers the option. 0 refers the quit option, 1 refers the first option, 2 refers the
+     * second...
+     */
     private int requireOption(String quit, String... options) {
         String instruction = IntStream.range(0, options.length)
                 .mapToObj(i -> String.format("%d\t%s\n", i + 1, options[i]))
@@ -658,18 +666,52 @@ public class TextView implements View {
         return requireInteger(instruction, errorMessage, 0, options.length);
     }
 
+    /**
+     * require the user input an integer.
+     *
+     * @param instruction  the instruction to the user for inputting the integer value.
+     * @param errorMessage the error message to print if the input is not an integer.
+     * @return the inputted integer value. {@code null} if the user does not input anything.
+     */
     private Integer requireInteger(String instruction, String errorMessage) {
         return requireInteger(instruction, errorMessage, null, null, null);
     }
 
+    /**
+     * require the user input an integer.
+     *
+     * @param instruction  the instruction to the user for inputting the integer value.
+     * @param errorMessage the error message to print if the input is not an integer or not match the condition.
+     * @param minValue     the minimum value that the input should be (inclusive). {@code null} if no minimum value.
+     * @return the inputted integer value. {@code null} if the user does not input anything.
+     */
     private Integer requireInteger(String instruction, String errorMessage, Integer minValue) {
         return requireInteger(instruction, errorMessage, minValue, null, null);
     }
 
+    /**
+     * require the user input an integer.
+     *
+     * @param instruction  the instruction to the user for inputting the integer value.
+     * @param errorMessage the error message to print if the input is not an integer or not match the condition.
+     * @param minValue     the minimum value that the input should be (inclusive). {@code null} if no minimum value.
+     * @param maxValue     the maximum value that the input should be (inclusive). {@code null} if no maximum value.
+     * @return the inputted integer value. {@code null} if the user does not input anything.
+     */
     private Integer requireInteger(String instruction, String errorMessage, Integer minValue, Integer maxValue) {
         return requireInteger(instruction, errorMessage, minValue, maxValue, null);
     }
 
+    /**
+     * require the user input an integer.
+     *
+     * @param instruction  the instruction to the user for inputting the integer value.
+     * @param errorMessage the error message to print if the input is not an integer or not match the condition.
+     * @param minValue     the minimum value that the input should be (inclusive). {@code null} if no minimum value.
+     * @param maxValue     the maximum value that the input should be (inclusive). {@code null} if no maximum value.
+     * @param length       the length of the input should be.
+     * @return the inputted integer value. {@code null} if the user does not input anything.
+     */
     private Integer requireInteger(String instruction, String errorMessage, Integer minValue, Integer maxValue,
                                    Integer length) {
         System.out.printf("%s: ", instruction);
@@ -695,18 +737,52 @@ public class TextView implements View {
         }
     }
 
+    /**
+     * require the user input a long value
+     *
+     * @param instruction  the instruction to the user for inputting the long value.
+     * @param errorMessage the error message to print if the input is not a long.
+     * @return the inputted long value. {@code null} if the user does not input anything.
+     */
     private Long requireLong(String instruction, String errorMessage) {
         return requireLong(instruction, errorMessage, null, null, null);
     }
 
+    /**
+     * require the user input a long value
+     *
+     * @param instruction  the instruction to the user for inputting the long value.
+     * @param errorMessage the error message to print if the input is not a long or not match the conditions.
+     * @param minValue     the minimum value that the input should be (inclusive). {@code null} if no minimum value.
+     * @return the inputted long value. {@code null} if the user does not input anything.
+     */
     private Long requireLong(String instruction, String errorMessage, Long minValue) {
         return requireLong(instruction, errorMessage, minValue, null, null);
     }
 
+    /**
+     * require the user input a long value
+     *
+     * @param instruction  the instruction to the user for inputting the long value.
+     * @param errorMessage the error message to print if the input is not a long or not match the conditions.
+     * @param minValue     the minimum value that the input should be (inclusive). {@code null} if no minimum value.
+     * @param maxValue     the maximum value that the input should be (inclusive). {@code null} if no minimum value.
+     * @return the inputted long value. {@code null} if the user does not input anything.
+     */
     private Long requireLong(String instruction, String errorMessage, Long minValue, Long maxValue) {
         return requireLong(instruction, errorMessage, minValue, maxValue, null);
     }
 
+    /**
+     * require the user input a long value.
+     *
+     * @param instruction  the instruction to the user for inputting the long value.
+     * @param errorMessage the error message to print if the input is not a long or not match the conditions.
+     * @param minValue     the minimum value that the input should be (inclusive). {@code null} if no minimum value.
+     * @param maxValue     the maximum value that the input should be (inclusive). {@code null} if no minimum value.
+     * @param length       the length of the input should be.
+     * @return the inputted long value. {@code null} if the user does not input anything.
+     */
     private Long requireLong(String instruction, String errorMessage, Long minValue, Long maxValue, Integer length) {
         System.out.printf("%s: ", instruction);
 
@@ -731,14 +807,38 @@ public class TextView implements View {
         }
     }
 
+    /**
+     * require the user input a double value.
+     *
+     * @param instruction  the instruction to the user for inputting the double value.
+     * @param errorMessage the error message to print if the input is not a double.
+     * @return the inputted double value. {@code null} if the user does not input anything.
+     */
     private Double requireDouble(String instruction, String errorMessage) {
         return requireDouble(instruction, errorMessage, null, null);
     }
 
+    /**
+     * require the user input a double value.
+     *
+     * @param instruction  the instruction to the user for inputting the double value.
+     * @param errorMessage the error message to print if the input does not match the condition.
+     * @param minValue     the minimum value that the input should be (inclusive). {@code null} if no minimum value.
+     * @return the inputted double value. {@code null} if the user does not input anything.
+     */
     private Double requireDouble(String instruction, String errorMessage, Double minValue) {
         return requireDouble(instruction, errorMessage, minValue, null);
     }
 
+    /**
+     * require the user input a double value.
+     *
+     * @param instruction  the instruction to the user for inputting the double value.
+     * @param errorMessage the error message to print if the input does not match the condition.
+     * @param minValue     the minimum value that the input should be (inclusive). {@code null} if no minimum value.
+     * @param maxValue     the maximum value that the input should be (inclusive). {@code null} if no maximum value.
+     * @return the inputted double value. {@code null} if the user does not input anything.
+     */
     private Double requireDouble(String instruction, String errorMessage, Double minValue, Double maxValue) {
         System.out.printf("%s: ", instruction);
 
@@ -759,14 +859,30 @@ public class TextView implements View {
         }
     }
 
+    /**
+     * require the user input a string.
+     *
+     * @param instruction the instruction to the user for inputting the string.
+     * @return the inputted string.
+     */
     private String requireString(String instruction) {
         return requireString(instruction, null, null);
     }
 
+    /**
+     * require the user input a string with specified format in a regular expression.
+     *
+     * @param instruction  the instruction to the user for inputting the string.
+     * @param errorMessage the error message to print if the input does not match the pattern.
+     * @param regex        the regular expression that the input must match.
+     * @return the inputted string. {@code null} if the user does not input anything.
+     */
     private String requireString(String instruction, String errorMessage, Pattern regex) {
         System.out.printf("%s: ", instruction);
         String input = scanner.nextLine();
-        if (regex == null || regex.matcher(input).find()) {
+        if ("".equals(input)) {
+            return null;
+        } else if (regex == null || regex.matcher(input).find()) {
             return input;
         } else {
             System.out.println(errorMessage);
@@ -774,22 +890,47 @@ public class TextView implements View {
         }
     }
 
+    /**
+     * show a message of success to doing an action.
+     *
+     * @param action the action that lead the success.
+     */
     private void success(String action) {
         System.out.printf("%s success\n", action);
     }
 
+    /**
+     * show a message of fail to doing an action.
+     *
+     * @param action the action that lead the fail.
+     */
     private void fail(String action) {
         System.out.printf("%s fail\n", action);
     }
 
+    /**
+     * require the user input the first name.
+     *
+     * @return the inputted first name.
+     */
     private String requireFirstName() {
         return requireString("first name");
     }
 
+    /**
+     * require the user input the last name.
+     *
+     * @return the inputted last name.
+     */
     private String requireLastName() {
         return requireString("last name");
     }
 
+    /**
+     * require the user input the gender.
+     *
+     * @return the inputted gender.
+     */
     private Gender requireGender() {
         StringBuilder instruction = new StringBuilder();
         instruction.append("gender (");
@@ -809,15 +950,31 @@ public class TextView implements View {
         }
     }
 
+    /**
+     * require the user input the birthday.
+     *
+     * @return the inputted birthday.
+     */
     private Date requireBirthday() {
         return requireDate("birthday");
     }
 
+    /**
+     * require the user input the phone.
+     *
+     * @return the inputted phone.
+     */
     private String requirePhone() {
         return requireString("phone", "Please enter a correct phone number (only numbers)",
                 Pattern.compile("^\\d{10,15}$"));
     }
 
+    /**
+     * require the user input the date.
+     *
+     * @param instruction the instruction of inputting the date.
+     * @return the inputted date.
+     */
     private Date requireDate(String instruction) {
         System.out.printf("%s: ", instruction);
         String input = scanner.nextLine();
@@ -832,22 +989,47 @@ public class TextView implements View {
         }
     }
 
+    /**
+     * require the user input the line 1 of address.
+     *
+     * @return the inputted line 1.
+     */
     private String requireLine1() {
         return requireString("line1");
     }
 
+    /**
+     * require the user input the line 2 of address.
+     *
+     * @return the inputted line 2.
+     */
     private String requireLine2() {
         return requireString("line2");
     }
 
+    /**
+     * require the user input the line 3 of address.
+     *
+     * @return the inputted line 3.
+     */
     private String requireLine3() {
         return requireString("line3");
     }
 
+    /**
+     * require the user input the city.
+     *
+     * @return the inputted city.
+     */
     private String requireCity() {
         return requireString("city");
     }
 
+    /**
+     * require the user input the state.
+     *
+     * @return the inputted state.
+     */
     private String requireState() {
         String input = requireString("Please enter the state of the address",
                 "Please enter a correct state", Pattern.compile("^[a-zA-Z() ]*$"));
@@ -863,47 +1045,103 @@ public class TextView implements View {
         }
     }
 
+    /**
+     * require the user input the postal code.
+     *
+     * @return the inputted postal code.
+     */
     private String requirePostalCode() {
         return requireString("postal code", "Please enter a correct postal code (only numbers)",
                 Pattern.compile("^\\d{5}([ \\-]\\d{4})?$"));
     }
 
+    /**
+     * require the user input an id.
+     *
+     * @param name the name of the id.
+     * @return the inputted id.
+     */
     private long requireId(String name) {
         return requireLong(String.format("%s id", name), "please enter a correct id", 1L);
     }
 
+    /**
+     * require the user input category name.
+     *
+     * @return the inputted category name.
+     */
     private String requireCategoryName() {
         return requireString("category name");
     }
 
+    /**
+     * require the user input the salary.
+     *
+     * @return the inputted salary.
+     */
     private double requireSalary() {
         return requireDouble("salary", "please enter a correct salary", .0);
     }
 
+    /**
+     * require the user input the group name.
+     *
+     * @return the inputted group name.
+     */
     private String requireGroupName() {
         return requireString("group name");
     }
 
+    /**
+     * require the user input the product name.
+     *
+     * @return the inputted product name.
+     */
     private String requireProductName() {
         return requireString("product name");
     }
 
+    /**
+     * require the user input the retail price.
+     *
+     * @return the inputted retail price.
+     */
     private double requireRetailPrice() {
         return requireDouble("retail price", "please enter a correct price", .0);
     }
 
+    /**
+     * require the user input the membership discount.
+     *
+     * @return the inputted membership discount.
+     */
     private double requireMembershipDiscount() {
         return requireDouble("membership discount", "please enter a correct discount", .0);
     }
 
+    /**
+     * require the user input the price.
+     *
+     * @return the inputted price.
+     */
     private double requirePrice() {
         return requireDouble("price", "please enter a correct price", .0);
     }
 
+    /**
+     * require the user input the supplier name.
+     *
+     * @return the inputted supplier name.
+     */
     private String requireSupplierName() {
         return requireString("supplier name");
     }
 
+    /**
+     * require the user input the purchase price.
+     *
+     * @return the inputted purchase price.
+     */
     private double requirePurchasePrice() {
         return requireDouble("price", "please enter a correct price", .0);
     }
