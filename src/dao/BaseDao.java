@@ -55,10 +55,23 @@ public abstract class BaseDao {
                 }
                 return statement.executeQuery();
             }
-        } catch (SQLException exception) {
-            exception.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
+    }
+
+    public int executeUpdate(String preparedSql, Object... args) {
+        try (Connection connection = getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(preparedSql)) {
+                for (int i = 1; i <= args.length; i++) {
+                    statement.setObject(i, args[i]);
+                }
+                return statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
