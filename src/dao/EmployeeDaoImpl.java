@@ -25,7 +25,7 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
     public  List<Employee> getAll(){
         //TODO: get all employees id
         List<employee> total = new List<Employee>();
-        Result answer = executeSql("SELECT employee_id from employee")
+        Result answer = executeSql("SELECT * from employee");
         while(answer.next())
         {
             long employee_id = answer.getLong();
