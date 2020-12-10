@@ -16,13 +16,20 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
 
     public boolean delete(long employeeId){
          //TODO: check if delete sucess
-        ResultSet answer = executeSql("DELETE FROM employee WHERE employee_id = (?)", employeeId);
+        ResultSet answer = executeUpdate("DELETE FROM employee WHERE employee_id = (?)", employeeId);
+        if(answer == 0)
+            return false;
         return true;
     }
 
     public  List<Employee> getAll(){
-        //TODO: get all employees
+        //TODO: get all employees id
         List<employee> total = new List<Employee>();
+        Result answer = executeSql("SELECT employee_id from employee")
+        while(answer.next())
+        {
+            total.add(answer.getLong());
+        }
         return total;
     }
 }
