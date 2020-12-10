@@ -29,7 +29,7 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
     public List<Category> getAll(){
         //TODO: implement getAll
         List<Category> all = new List<category>();
-        Result answer = executeSql("SELECT * from category")
+        Result answer = executeSql("SELECT * from category");
         while(answer.next())
         {
             long id = answer.getLong();
